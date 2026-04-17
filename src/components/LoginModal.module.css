@@ -17,7 +17,7 @@
   --input-border-hover: #616161;
   --input-border-focus: #1976d2;
   --input-border-error: #f44336;
-  --label-color: rgba(0, 0, 0, 0.6);
+  --label-color: rgb(0 0 0 / 60%);
   --button-bg: #1976d2;
   --button-bg-hover: #1565c0;
   --button-bg-active: #0d47a1;
@@ -30,16 +30,16 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding: 20px 24px;
   font-family:
-    'Roboto',
+    Roboto,
     -apple-system,
     BlinkMacSystemFont,
     'Segoe UI',
     'Helvetica Neue',
     Arial,
     sans-serif;
+  gap: 24px;
+  padding: 20px 24px;
 }
 
 .formGroup {
@@ -52,13 +52,13 @@
 
 /** Form labels - visible at all times (WCAG 1.3.1) */
 .label {
+  color: var(--label-color);
   display: block;
   font-size: 12px;
   font-weight: 500;
-  color: var(--label-color);
+  letter-spacing: 0.5px;
   margin-bottom: 4px;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
   transition: color 0.3s;
 }
 
@@ -71,17 +71,17 @@
 
 /** Form input styling - Material Design style */
 .input {
-  padding: 12px 0;
-  font-size: 16px;
+  background: transparent;
   border: none;
   border-bottom: 2px solid var(--input-border);
-  background: transparent;
-  color: rgba(0, 0, 0, 0.87);
+  box-sizing: border-box;
+  color: rgb(0 0 0 / 87%);
   font-family: inherit;
+  font-size: 16px;
+  padding: 12px 0;
   transition:
     border-color 0.3s,
     box-shadow 0.3s;
-  box-sizing: border-box;
 }
 
 .input:hover:not(:disabled) {
@@ -89,15 +89,15 @@
 }
 
 .input:focus-visible {
-  outline: none;
   border-bottom-color: var(--input-border-focus);
   box-shadow: 0 1px 0 0 var(--input-border-focus);
+  outline: none;
 }
 
 .input:disabled {
   background-color: transparent;
-  color: rgba(0, 0, 0, 0.38);
-  border-bottom-color: rgba(0, 0, 0, 0.12);
+  border-bottom-color: rgb(0 0 0 / 12%);
+  color: rgb(0 0 0 / 38%);
   cursor: not-allowed;
 }
 
@@ -119,48 +119,48 @@
 
 /** Error message - linked to input via aria-describedby (WCAG 1.3.1) */
 .errorMessage {
-  margin: 4px 0 0 0;
-  font-size: 12px;
   color: var(--error-color);
+  font-size: 12px;
   line-height: 1.5;
+  margin: 4px 0 0;
 }
 
 /** Error banner at top of form */
 .errorBanner {
-  padding: 12px 16px;
   background-color: var(--error-bg);
   border-left: 4px solid var(--error-color);
   border-radius: 0;
   color: #c62828;
   font-size: 13px;
   font-weight: 500;
-  margin: -20px -24px 12px -24px;
+  margin: -20px -24px 12px;
+  padding: 12px 16px;
 }
 
 /** Input wrapper for password visibility toggle */
 .inputWrapper {
-  position: relative;
-  display: flex;
   align-items: center;
+  display: flex;
+  position: relative;
 }
 
 /** Toggle password visibility button */
 .togglePassword {
+  background: none;
+  border: none;
+  color: rgb(0 0 0 / 54%);
+  cursor: pointer;
+  font-size: 16px;
+  padding: 4px 8px;
   position: absolute;
   right: 0;
   top: 50%;
   transform: translateY(-50%);
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 4px 8px;
-  color: rgba(0, 0, 0, 0.54);
-  font-size: 16px;
   transition: color 0.2s;
 }
 
 .togglePassword:hover {
-  color: rgba(0, 0, 0, 0.87);
+  color: rgb(0 0 0 / 87%);
 }
 
 .togglePassword:focus-visible {
@@ -172,73 +172,73 @@
 
 /** Submit button styling - Material Design */
 .submitButton {
-  padding: 12px 24px;
-  margin-top: 12px;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  color: white;
+  align-items: center;
   background-color: var(--button-bg);
   border: none;
   border-radius: 4px;
+  box-shadow:
+    0 3px 1px -2px rgb(0 0 0 / 20%),
+    0 2px 2px 0 rgb(0 0 0 / 14%),
+    0 1px 5px 0 rgb(0 0 0 / 12%);
+  color: white;
   cursor: pointer;
+  display: flex;
+  font-size: 14px;
+  font-weight: 600;
+  gap: 8px;
+  justify-content: center;
+  letter-spacing: 0.5px;
+  margin-top: 12px;
+  padding: 12px 24px;
+  text-transform: uppercase;
   transition:
     background-color 0.3s,
     box-shadow 0.3s,
     opacity 0.3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  box-shadow:
-    0 3px 1px -2px rgba(0, 0, 0, 0.2),
-    0 2px 2px 0 rgba(0, 0, 0, 0.14),
-    0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
 
 .submitButton:hover:not(:disabled) {
   background-color: var(--button-bg-hover);
   box-shadow:
-    0 3px 3px -2px rgba(0, 0, 0, 0.2),
-    0 3px 4px 0 rgba(0, 0, 0, 0.14),
-    0 1px 8px 0 rgba(0, 0, 0, 0.12);
+    0 3px 3px -2px rgb(0 0 0 / 20%),
+    0 3px 4px 0 rgb(0 0 0 / 14%),
+    0 1px 8px 0 rgb(0 0 0 / 12%);
 }
 
 .submitButton:focus-visible {
+  box-shadow:
+    0 3px 3px -2px rgb(0 0 0 / 20%),
+    0 3px 4px 0 rgb(0 0 0 / 14%),
+    0 1px 8px 0 rgb(0 0 0 / 12%);
   outline: 2px solid var(--button-bg);
   outline-offset: 2px;
-  box-shadow:
-    0 3px 3px -2px rgba(0, 0, 0, 0.2),
-    0 3px 4px 0 rgba(0, 0, 0, 0.14),
-    0 1px 8px 0 rgba(0, 0, 0, 0.12);
 }
 
 .submitButton:active:not(:disabled) {
   background-color: var(--button-bg-active);
   box-shadow:
-    0 5px 5px -3px rgba(0, 0, 0, 0.2),
-    0 8px 10px 1px rgba(0, 0, 0, 0.14),
-    0 3px 14px 2px rgba(0, 0, 0, 0.12);
+    0 5px 5px -3px rgb(0 0 0 / 20%),
+    0 8px 10px 1px rgb(0 0 0 / 14%),
+    0 3px 14px 2px rgb(0 0 0 / 12%);
 }
 
 .submitButton:disabled {
   background-color: var(--button-disabled);
-  cursor: not-allowed;
   box-shadow: none;
+  cursor: not-allowed;
 }
 
 /* ==================== Loading Spinner ==================== */
 
 /** Loading spinner animation */
 .spinner {
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-top-color: white;
-  border-radius: 50%;
   animation: spin 0.8s linear infinite;
+  border: 2px solid rgb(255 255 255 / 30%);
+  border-radius: 50%;
+  border-top-color: white;
+  display: inline-block;
+  height: 16px;
+  width: 16px;
 }
 
 @keyframes spin {
@@ -253,27 +253,27 @@
 .actions {
   display: flex;
   gap: 12px;
-  margin-top: 20px;
   justify-content: flex-end;
+  margin-top: 20px;
 }
 
 /** Success message styling */
 .successMessage {
-  text-align: center;
   padding: 40px 24px;
+  text-align: center;
 }
 
 .successText {
-  margin: 0;
-  font-size: 16px;
   color: var(--success-color);
+  font-size: 16px;
   font-weight: 500;
   line-height: 1.6;
+  margin: 0;
 }
 
 /* ==================== Responsive Design ==================== */
 
-@media (max-width: 600px) {
+@media (width <= 600px) {
   .form {
     gap: 20px;
     padding: 16px 20px;
@@ -289,12 +289,12 @@
   }
 
   .submitButton {
-    padding: 12px 20px;
     font-size: 13px;
+    padding: 12px 20px;
   }
 
   .errorBanner {
-    margin: -16px -20px 12px -20px;
+    margin: -16px -20px 12px;
     padding: 10px 14px;
   }
 }
@@ -334,11 +334,11 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --input-border: rgba(255, 255, 255, 0.23);
-    --input-border-hover: rgba(255, 255, 255, 0.4);
+    --input-border: rgb(255 255 255 / 23%);
+    --input-border-hover: rgb(255 255 255 / 40%);
     --input-border-focus: #90caf9;
     --input-border-error: #ef5350;
-    --label-color: rgba(255, 255, 255, 0.7);
+    --label-color: rgb(255 255 255 / 70%);
     --error-color: #ef5350;
     --error-bg: #5f2c2c;
     --success-color: #81c784;
@@ -349,12 +349,12 @@
   }
 
   .input {
-    color: rgba(255, 255, 255, 0.87);
+    color: rgb(255 255 255 / 87%);
   }
 
   .input:disabled {
-    color: rgba(255, 255, 255, 0.38);
-    border-bottom-color: rgba(255, 255, 255, 0.12);
+    border-bottom-color: rgb(255 255 255 / 12%);
+    color: rgb(255 255 255 / 38%);
   }
 
   .errorBanner {
@@ -362,10 +362,10 @@
   }
 
   .togglePassword {
-    color: rgba(255, 255, 255, 0.54);
+    color: rgb(255 255 255 / 54%);
   }
 
   .togglePassword:hover {
-    color: rgba(255, 255, 255, 0.87);
+    color: rgb(255 255 255 / 87%);
   }
 }
