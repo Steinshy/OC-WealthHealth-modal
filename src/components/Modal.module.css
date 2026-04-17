@@ -1,0 +1,309 @@
+/**
+ * Modal.module.css - Material-UI inspired modal styling
+ *
+ * Features:
+ * - MUI-style backdrop with blur effect
+ * - Smooth Grow animation
+ * - Material elevation (shadow)
+ * - Clean typography hierarchy
+ * - Responsive design
+ * - CSS custom properties for theming
+ * - Size variants (sm, md, lg)
+ */
+
+:root {
+  --modal-bg: #ffffff;
+  --modal-text: rgba(0, 0, 0, 0.87);
+  --modal-text-light: rgba(0, 0, 0, 0.6);
+  --modal-border-radius: 4px;
+  --modal-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+  --modal-border-color-success: #4caf50;
+  --modal-border-color-error: #f44336;
+  --modal-border-color-info: #2196f3;
+  --modal-border-color-warning: #ff9800;
+  --modal-title-color-success: #2e7d32;
+  --modal-title-color-error: #c62828;
+  --modal-title-color-info: #1565c0;
+  --modal-title-color-warning: #e65100;
+}
+
+.modal {
+  border: none;
+  border-radius: var(--modal-border-radius);
+  box-shadow: var(--modal-shadow);
+  padding: 0;
+  max-width: 600px;
+  width: calc(100% - 32px);
+  margin: auto;
+  animation: grow 0.3s ease-in-out;
+  font-family:
+    'Roboto',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    'Helvetica Neue',
+    Arial,
+    sans-serif;
+  background: var(--modal-bg);
+  color: var(--modal-text);
+  overflow: hidden;
+}
+
+/** Dialog backdrop overlay - MUI style */
+.modal::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* ==================== Header & Content sections ==================== */
+
+/** Modal header container */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px 24px 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/** Modal title styling */
+.title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--modal-text);
+  letter-spacing: 0;
+  flex: 1;
+}
+
+/** Close button styling */
+.closeButton {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.54);
+  border-radius: 4px;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+}
+
+.closeButton:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.closeButton:focus-visible {
+  outline: 2px solid #1976d2;
+  outline-offset: 0;
+}
+
+/** Modal content container */
+.content {
+  padding: 20px 24px;
+  font-size: 14px;
+  line-height: 1.71429;
+  color: var(--modal-text-light);
+  overflow-y: auto;
+  max-height: calc(100vh - 200px);
+}
+
+/* ==================== Size Variants ==================== */
+
+/** Small modal (400px max-width) */
+.modal--sm {
+  max-width: 400px;
+}
+
+/** Medium modal (600px max-width) - default */
+.modal--md {
+  max-width: 600px;
+}
+
+/** Large modal (800px max-width) */
+.modal--lg {
+  max-width: 800px;
+}
+
+/* ==================== Status-based styling ==================== */
+
+/** Success state: green top border */
+.modal--success {
+  border-top: 4px solid var(--modal-border-color-success);
+}
+
+.modal--success .title {
+  color: var(--modal-title-color-success);
+}
+
+/** Error state: red top border */
+.modal--error {
+  border-top: 4px solid var(--modal-border-color-error);
+}
+
+.modal--error .title {
+  color: var(--modal-title-color-error);
+}
+
+/** Info state: blue top border */
+.modal--info {
+  border-top: 4px solid var(--modal-border-color-info);
+}
+
+.modal--info .title {
+  color: var(--modal-title-color-info);
+}
+
+/** Warning state: amber top border */
+.modal--warning {
+  border-top: 4px solid var(--modal-border-color-warning);
+}
+
+.modal--warning .title {
+  color: var(--modal-title-color-warning);
+}
+
+/** Default state: subtle gray top border */
+.modal--default {
+  border-top: 4px solid #e0e0e0;
+}
+
+/* ==================== Animations ==================== */
+
+/** Grow animation for modal entry (MUI style) */
+@keyframes grow {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/** Fade in animation for backdrop */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ==================== Accessibility ==================== */
+
+/** Focus outline for keyboard navigation */
+.modal:focus-visible {
+  outline: 2px solid #1976d2;
+  outline-offset: 0;
+}
+
+/** Reduced motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .modal {
+    animation: none;
+  }
+
+  .modal::backdrop {
+    animation: none;
+    backdrop-filter: none;
+  }
+}
+
+/** High contrast mode */
+@media (prefers-contrast: more) {
+  .title {
+    font-weight: 600;
+  }
+
+  .modal--success {
+    border-top-width: 6px;
+  }
+
+  .modal--error {
+    border-top-width: 6px;
+  }
+
+  .modal--info {
+    border-top-width: 6px;
+  }
+}
+
+/* ==================== Responsive ==================== */
+
+/** Mobile adjustments */
+@media (max-width: 600px) {
+  .modal {
+    width: 100%;
+    border-radius: 0;
+    max-height: 100vh;
+    max-width: 100% !important;
+  }
+
+  .header {
+    padding: 20px 20px 16px;
+  }
+
+  .title {
+    font-size: 18px;
+  }
+
+  .content {
+    padding: 16px 20px;
+  }
+}
+
+/* ==================== Dark mode support ==================== */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --modal-bg: #424242;
+    --modal-text: rgba(255, 255, 255, 0.87);
+    --modal-text-light: rgba(255, 255, 255, 0.7);
+    --modal-title-color-success: #81c784;
+    --modal-title-color-error: #ef5350;
+    --modal-title-color-info: #64b5f6;
+    --modal-title-color-warning: #ffb74d;
+  }
+
+  .modal {
+    box-shadow:
+      0 5px 5px -3px rgba(0, 0, 0, 0.4),
+      0 8px 10px 1px rgba(0, 0, 0, 0.28),
+      0 3px 14px 2px rgba(0, 0, 0, 0.24);
+  }
+
+  .modal::backdrop {
+    background: rgba(0, 0, 0, 0.7);
+  }
+
+  .header {
+    border-bottom-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .closeButton {
+    color: rgba(255, 255, 255, 0.54);
+  }
+
+  .closeButton:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.87);
+  }
+
+  .modal--default {
+    border-top-color: #616161;
+  }
+}
