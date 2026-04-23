@@ -36,6 +36,8 @@ jobs:
         run: npm ci
 
       - name: Build demo (GitHub Pages bundle)
+        env:
+          VITE_BASE_PATH: /${{ github.event.repository.name }}/
         run: npm run build:demo
 
       - name: Upload Pages artifact
@@ -46,7 +48,6 @@ jobs:
   deploy:
     name: Deploy to GitHub Pages
     needs: build
-    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
