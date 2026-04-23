@@ -1,13 +1,19 @@
 {
   "name": "hrnet-modal",
   "version": "0.1.0",
-  "description": "Modern, accessible modal component library for React",
+  "description": "A modern, accessible modal component library for React—published to npm as a proof of concept for OpenClassroom project.",
+  "license": "MIT",
+  "author": "Steinshy",
   "type": "module",
   "main": "./dist/index.cjs",
   "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
+  "files": [ "dist"],
+  "keywords": [ "react", "modal", "dialog", "component", "typescript", "wcag", "accessible"],
+  "homepage": "https://github.com/Steinshy/OC-WealthHealth-modal",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Steinshy/OC-WealthHealth-modal"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -58,15 +64,5 @@
     "typescript-eslint": "^8.58.2",
     "vite": "^8",
     "vite-plugin-dts": "^4.5.4"
-  },
-  "keywords": [
-    "react",
-    "modal",
-    "dialog",
-    "component",
-    "typescript",
-    "wcag",
-    "accessible"
-  ],
-  "license": "MIT"
+  }
 }
