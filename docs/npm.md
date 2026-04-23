@@ -10,7 +10,7 @@ Scoped packages are namespaced with `@scope/package-name`:
 
 ```json
 {
-  "name": "@wealthhealth/hrnet-modal"
+  "name": "@wealthhealth/wealthhealth-modal"
 }
 ```
 
@@ -39,7 +39,7 @@ Choose a scope that represents your organization:
 
 ```json
 {
-  "name": "@wealthhealth/hrnet-modal"
+  "name": "@wealthhealth/wealthhealth-modal"
 }
 ```
 
@@ -55,7 +55,7 @@ Common patterns:
 
 ```json
 {
-  "name": "@wealthhealth/hrnet-modal",
+  "name": "@wealthhealth/wealthhealth-modal",
   "version": "0.1.0",
   "description": "Accessible React modal component library built with native <dialog>",
   "main": "dist/index.cjs",
@@ -89,12 +89,12 @@ Common patterns:
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/hrnet-modal.git"
+    "url": "https://github.com/yourusername/wealthhealth-modal.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/hrnet-modal/issues"
+    "url": "https://github.com/yourusername/wealthhealth-modal/issues"
   },
-  "homepage": "https://github.com/yourusername/hrnet-modal#readme"
+  "homepage": "https://github.com/yourusername/wealthhealth-modal#readme"
 }
 ```
 
@@ -226,10 +226,10 @@ This grants public access to your scoped package (default is private).
 ### Verify Publication
 
 ```bash
-npm view @wealthhealth/hrnet-modal
+npm view @wealthhealth/wealthhealth-modal
 ```
 
-Check on [npmjs.com](https://www.npmjs.com/package/@wealthhealth/hrnet-modal)
+Check on [npmjs.com](https://www.npmjs.com/package/@wealthhealth/wealthhealth-modal)
 
 ### Update Published Package
 
@@ -253,11 +253,11 @@ npm publish --tag beta
 npm publish --tag rc
 
 # Add/move tags to existing versions
-npm dist-tag add @wealthhealth/hrnet-modal@0.1.0 rc
-npm dist-tag add @wealthhealth/hrnet-modal@0.2.0 latest
+npm dist-tag add @wealthhealth/wealthhealth-modal@0.1.0 rc
+npm dist-tag add @wealthhealth/wealthhealth-modal@0.2.0 latest
 
 # View all tags
-npm dist-tag ls @wealthhealth/hrnet-modal
+npm dist-tag ls @wealthhealth/wealthhealth-modal
 ```
 
 ### Tag Examples
@@ -274,13 +274,13 @@ npm dist-tag ls @wealthhealth/hrnet-modal
 ### Install from npm
 
 ```bash
-npm install @wealthhealth/hrnet-modal
+npm install @wealthhealth/wealthhealth-modal
 ```
 
 ### Import Components
 
 ```tsx
-import { Modal, SignupModal, LoginModal } from '@wealthhealth/hrnet-modal';
+import { Modal, SignupModal, LoginModal } from '@wealthhealth/wealthhealth-modal';
 
 export function App() {
   const [isOpen, setIsOpen] = useState(false);

@@ -1,6 +1,6 @@
-# hrnet-modal
+# WealthHealth-modal
 
-[![npm](https://img.shields.io/npm/v/hrnet-modal?color=blue)](https://www.npmjs.com/package/hrnet-modal)
+[![npm](https://img.shields.io/npm/v/WealthHealth-modal?color=blue)](https://www.npmjs.com/package/WealthHealth-modal)
 [![license](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-enabled-blue)](https://www.typescriptlang.org)
 [![React](https://img.shields.io/badge/React-18%20%7C%2019-blue)](https://react.dev)
@@ -21,7 +21,7 @@ A lightweight React modal component library using native `<dialog>` element. Inc
 ## Install
 
 ```bash
-npm install hrnet-modal
+npm install WealthHealth-modal
 ```
 
 ## Quick Start
@@ -29,7 +29,7 @@ npm install hrnet-modal
 ### Basic Modal
 
 ```tsx
-import { Modal } from 'hrnet-modal';
+import { Modal } from 'WealthHealth-modal';
 import { useState } from 'react';
 
 export function App() {
@@ -49,7 +49,7 @@ export function App() {
 ### Signup Form
 
 ```tsx
-import { SignupModal } from 'hrnet-modal';
+import { SignupModal } from 'WealthHealth-modal';
 import { useState } from 'react';
 
 export function AuthPage() {
@@ -116,22 +116,24 @@ Same props as SignupModal (minus confirmPassword validation).
 
 Simple yes/no confirmation dialog.
 
-| Prop           | Type                          | Default     | Description         |
-| -------------- | ----------------------------- | ----------- | ------------------- |
-| `isOpen`       | `boolean`                     | required    | Show/hide           |
-| `onClose`      | `() => void`                  | required    | Close callback      |
-| `onConfirm`    | `() => void \| Promise<void>` | required    | Confirm handler     |
-| `title`        | `string`                      | required    | Dialog title        |
-| `children`     | `ReactNode`                   | required    | Dialog content      |
-| `confirmLabel` | `string`                      | `'Confirm'` | Confirm button text |
-| `cancelLabel`  | `string`                      | `'Cancel'`  | Cancel button text  |
+| Prop           | Type                                                       | Default     | Description                               |
+| -------------- | ---------------------------------------------------------- | ----------- | ----------------------------------------- |
+| `isOpen`       | `boolean`                                                  | required    | Show/hide                                 |
+| `onClose`      | `() => void`                                               | required    | Close callback                            |
+| `onConfirm`    | `() => void \| Promise<void>`                              | required    | Confirm handler — modal closes on resolve |
+| `title`        | `string`                                                   | required    | Dialog title                              |
+| `children`     | `ReactNode`                                                | required    | Dialog content                            |
+| `confirmLabel` | `string`                                                   | `'Confirm'` | Confirm button text                       |
+| `cancelLabel`  | `string`                                                   | `'Cancel'`  | Cancel button text                        |
+| `isLoading`    | `boolean`                                                  | `false`     | Show spinner, disable buttons             |
+| `status`       | `'success' \| 'error' \| 'info' \| 'warning' \| 'default'` | `'default'` | Visual state                              |
 
 ## Styling
 
 Components use CSS Modules for styling. Override with custom classes:
 
 ```tsx
-import { Modal } from 'hrnet-modal';
+import { Modal } from 'WealthHealth-modal';
 import styles from './customStyles.module.css';
 
 <Modal isOpen={true} onClose={() => {}} className={styles.custom}>
@@ -186,4 +188,5 @@ MIT
 ---
 
 **GitHub:** https://github.com/Steinshy/OC-WealthHealth-modal
+**Demo** https://steinshy.github.io/OC-WealthHealth-modal/
 **Original Project Repo** https://github.com/OpenClassrooms-Student-Center/P12_Front-end

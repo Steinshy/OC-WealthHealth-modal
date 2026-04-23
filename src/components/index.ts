@@ -1,5 +1,5 @@
 /**
- * Component exports for hrnet-modal
+ * Component exports for wealthHealth-modal
  * Provides barrel export for convenient importing
  */
 

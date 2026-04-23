@@ -1,0 +1,8 @@
+## [0.1.0]
+
+### Fixed
+
+- Password and confirm-password inputs now stretch full width inside their flex wrapper (`width: 100%` added to `.input` in SignupModal.module.css and LoginModal.module.css)
+- ConfirmModal demo no longer blocks with `alert()` after confirmation; modal closes cleanly after a short async delay
+- GitHub Pages deploy now sets `VITE_BASE_PATH` so assets resolve correctly under the repo sub-path (`/OC-WealthHealth-modal/`)
+- GitHub Pages deploy now runs on both `main` and `dev` branches (removed `main`-only guard on the deploy job)

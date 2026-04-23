@@ -7,7 +7,7 @@ import dts from 'vite-plugin-dts';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 /**
- * Vite configuration for hrnet-modal library
+ * Vite configuration for wealthHealth-modal library
  *
  * Builds to:
  * - dist/index.js (ES module)

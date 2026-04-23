@@ -66,15 +66,13 @@ export default function App() {
   };
 
   const handleConfirmAction = async () => {
-    // Simulate async action
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    alert('Action confirmed!');
+    await new Promise((resolve) => setTimeout(resolve, 500));
   };
 
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <h1>hrnet-modal Component Library</h1>
+        <h1>wealthHealth-modal Component Library</h1>
         <p>Test Modal and SignupModal components in a browser environment</p>
       </header>
 

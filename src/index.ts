@@ -1,5 +1,5 @@
 /**
- * hrnet-modal - Modern, accessible modal component library for React
+ * wealthHealth-modal - Modern, accessible modal component library for React
  *
  * Main exports:
  * - Modal: Base modal component with native <dialog> element
