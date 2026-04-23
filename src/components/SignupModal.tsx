@@ -54,7 +54,9 @@ export const SignupModal = ({ isOpen, onClose, onSubmit, isLoading = false, erro
   const [submitted, setSubmitted] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const firstErrorRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
+  const confirmPasswordRef = useRef<HTMLInputElement>(null);
 
   /**
    * Validate form data and return errors object
@@ -107,7 +109,9 @@ export const SignupModal = ({ isOpen, onClose, onSubmit, isLoading = false, erro
 
     if (Object.keys(errors).length > 0) {
       // Focus first invalid field for accessibility
-      firstErrorRef.current?.focus();
+      if (errors.email) emailRef.current?.focus();
+      else if (errors.password) passwordRef.current?.focus();
+      else if (errors.confirmPassword) confirmPasswordRef.current?.focus();
       return;
     }
 
@@ -179,7 +183,7 @@ export const SignupModal = ({ isOpen, onClose, onSubmit, isLoading = false, erro
               Email <span className={styles.required}>*</span>
             </label>
             <input
-              ref={validationErrors.email ? firstErrorRef : null}
+              ref={emailRef}
               type="email"
               id="email"
               name="email"
@@ -204,7 +208,7 @@ export const SignupModal = ({ isOpen, onClose, onSubmit, isLoading = false, erro
             </label>
             <div className={styles.inputWrapper}>
               <input
-                ref={validationErrors.password ? firstErrorRef : null}
+                ref={passwordRef}
                 type={showPassword ? 'text' : 'password'}
                 id="password"
                 name="password"
@@ -234,7 +238,7 @@ export const SignupModal = ({ isOpen, onClose, onSubmit, isLoading = false, erro
             </label>
             <div className={styles.inputWrapper}>
               <input
-                ref={validationErrors.confirmPassword ? firstErrorRef : null}
+                ref={confirmPasswordRef}
                 type={showConfirmPassword ? 'text' : 'password'}
                 id="confirmPassword"
                 name="confirmPassword"

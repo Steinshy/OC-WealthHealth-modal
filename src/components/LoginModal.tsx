@@ -51,7 +51,8 @@ export const LoginModal = ({ isOpen, onClose, onSubmit, isLoading = false, error
   const [validationErrors, setValidationErrors] = useState<Record<string, string>>(initialErrors || {});
   const [submitted, setSubmitted] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const firstErrorRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
 
   /**
    * Validate form data and return errors object
@@ -92,7 +93,8 @@ export const LoginModal = ({ isOpen, onClose, onSubmit, isLoading = false, error
     setValidationErrors(errors);
 
     if (Object.keys(errors).length > 0) {
-      firstErrorRef.current?.focus();
+      if (errors.email) emailRef.current?.focus();
+      else if (errors.password) passwordRef.current?.focus();
       return;
     }
 
@@ -161,7 +163,7 @@ export const LoginModal = ({ isOpen, onClose, onSubmit, isLoading = false, error
               Email <span className={styles.required}>*</span>
             </label>
             <input
-              ref={validationErrors.email ? firstErrorRef : null}
+              ref={emailRef}
               type="email"
               id="email"
               name="email"
@@ -186,7 +188,7 @@ export const LoginModal = ({ isOpen, onClose, onSubmit, isLoading = false, error
             </label>
             <div className={styles.inputWrapper}>
               <input
-                ref={validationErrors.password ? firstErrorRef : null}
+                ref={passwordRef}
                 type={showPassword ? 'text' : 'password'}
                 id="password"
                 name="password"
