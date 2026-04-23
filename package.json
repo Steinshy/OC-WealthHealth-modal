@@ -7,8 +7,18 @@
   "type": "module",
   "main": "./dist/index.cjs",
   "types": "./dist/index.d.ts",
-  "files": [ "dist"],
-  "keywords": [ "react", "modal", "dialog", "component", "typescript", "wcag", "accessible"],
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "react",
+    "modal",
+    "dialog",
+    "component",
+    "typescript",
+    "wcag",
+    "accessible"
+  ],
   "homepage": "https://github.com/Steinshy/OC-WealthHealth-modal",
   "repository": {
     "type": "git",
