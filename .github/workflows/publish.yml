@@ -16,6 +16,17 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Ensure release commit is on main
+        run: |
+          git fetch origin main
+          if ! git merge-base --is-ancestor HEAD origin/main; then
+            echo "This release points to a commit that is not on main. Publishing is skipped (exit 1)."
+            exit 1
+          fi
+          echo "Release commit $(git rev-parse --short HEAD) is on main — OK to publish."
 
       - name: Setup Node.js
         uses: actions/setup-node@v6

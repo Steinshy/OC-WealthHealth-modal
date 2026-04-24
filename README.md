@@ -1,10 +1,17 @@
 # WealthHealth-modal
 
-[![npm](https://img.shields.io/npm/v/WealthHealth-modal?color=blue)](https://www.npmjs.com/package/WealthHealth-modal)
-[![license](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
-[![TypeScript](https://img.shields.io/badge/TypeScript-enabled-blue)](https://www.typescriptlang.org)
-[![React](https://img.shields.io/badge/React-18%20%7C%2019-blue)](https://react.dev)
-[![accessibility](https://img.shields.io/badge/WCAG-2.1%20AA-green)](https://www.w3.org/WAI/WCAG21/quickref/)
+[![npm version](https://img.shields.io/npm/v/%40steinshy%2Fwealthhealth-modal?logo=npm)](https://www.npmjs.com/package/@steinshy/wealthhealth-modal)
+[![npm downloads](https://img.shields.io/npm/dm/%40steinshy%2Fwealthhealth-modal?logo=npm&color=blue)](https://www.npmjs.com/package/@steinshy/wealthhealth-modal)
+[![license](https://img.shields.io/npm/l/%40steinshy%2Fwealthhealth-modal)](./LICENSE)
+[![TypeScript](https://img.shields.io/badge/TypeScript-6-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![React](https://img.shields.io/badge/React-18%20%7C%2019-61DAFB?logo=react&logoColor=black)](https://react.dev)
+[![WCAG 2.1 AA](https://img.shields.io/badge/WCAG-2.1%20AA-brightgreen)](https://www.w3.org/WAI/WCAG21/quickref/)
+
+[![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite)](https://vitejs.dev)
+[![Storybook](https://img.shields.io/badge/Storybook-10-FF4785?logo=storybook)](https://storybook.js.org)
+[![ESLint](https://img.shields.io/badge/ESLint-9-4B32C3?logo=eslint)](https://eslint.org)
+[![Prettier](https://img.shields.io/badge/Prettier-3-F7B93E?logo=prettier&logoColor=000)](https://prettier.io)
+[![Stylelint](https://img.shields.io/badge/Stylelint-17-000?logo=stylelint)](https://stylelint.io)
 
 A lightweight React modal component library using native `<dialog>` element. Includes pre-built SignupModal, LoginModal, and ConfirmModal with form validation and accessibility built in.
 
@@ -21,7 +28,7 @@ A lightweight React modal component library using native `<dialog>` element. Inc
 ## Install
 
 ```bash
-npm install WealthHealth-modal
+npm install wealthhealth-modal
 ```
 
 ## Quick Start
@@ -29,7 +36,7 @@ npm install WealthHealth-modal
 ### Basic Modal
 
 ```tsx
-import { Modal } from 'WealthHealth-modal';
+import { Modal } from 'wealthhalth-modal';
 import { useState } from 'react';
 
 export function App() {
@@ -83,16 +90,21 @@ export function AuthPage() {
 
 Base modal component. Use for custom content.
 
-| Prop              | Type                                          | Default     | Description                             |
-| ----------------- | --------------------------------------------- | ----------- | --------------------------------------- |
-| `isOpen`          | `boolean`                                     | required    | Show/hide modal                         |
-| `onClose`         | `() => void`                                  | required    | Called on ESC or backdrop click         |
-| `title`           | `string`                                      | required    | Modal title                             |
-| `children`        | `ReactNode`                                   | required    | Modal content                           |
-| `status`          | `'success' \| 'error' \| 'info' \| 'default'` | `'default'` | Visual state (changes top border color) |
-| `size`            | `'sm' \| 'md' \| 'lg'`                        | `'md'`      | Modal width                             |
-| `showCloseButton` | `boolean`                                     | `false`     | Show × button                           |
-| `closeOnBackdrop` | `boolean`                                     | `true`      | Allow clicking outside to close         |
+| Prop                | Type                                                       | Default     | Description                                             |
+| ------------------- | ---------------------------------------------------------- | ----------- | ------------------------------------------------------- |
+| `isOpen`            | `boolean`                                                  | required    | Show/hide modal                                         |
+| `onClose`           | `() => void`                                               | required    | Called once when the dialog closes                      |
+| `title`             | `string`                                                   | optional    | Modal title (header omitted if unset)                   |
+| `children`          | `ReactNode`                                                | required    | Modal content                                           |
+| `status`            | `'success' \| 'error' \| 'info' \| 'warning' \| 'default'` | `'default'` | Visual state (top border color)                         |
+| `size`              | `'sm' \| 'md' \| 'lg'`                                     | `'md'`      | Modal width                                             |
+| `autoCloseDuration` | `number`                                                   | optional    | Close automatically after N milliseconds                |
+| `showCloseButton`   | `boolean`                                                  | `true`      | Show × button (when `title` and `dismissible` allow it) |
+| `dismissible`       | `boolean`                                                  | `true`      | Allow ESC, backdrop (if enabled), and close button      |
+| `closeOnBackdrop`   | `boolean`                                                  | `true`      | Allow clicking outside to close                         |
+| `icon`              | `ReactNode`                                                | optional    | Optional icon in the header                             |
+| `footer`            | `ReactNode`                                                | optional    | Optional footer below content                           |
+| `className`         | `string`                                                   | optional    | Extra class on `<dialog>`                               |
 
 ### SignupModal
 

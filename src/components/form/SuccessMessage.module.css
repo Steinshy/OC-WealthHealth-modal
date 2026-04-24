@@ -1,0 +1,47 @@
+/**
+ * SuccessMessage.module.css - Success message styling
+ *
+ * Features:
+ * - Centered layout
+ * - Success state coloring
+ * - Accessible color contrast (WCAG 2.1 AA)
+ */
+
+:root {
+  --success-color: #2e7d32;
+}
+
+/** Success message container */
+.successMessage {
+  padding: 40px 24px;
+  text-align: center;
+}
+
+/** Success text styling */
+.successText {
+  color: var(--success-color);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ==================== Responsive Design ==================== */
+
+@media (width <= 600px) {
+  .successMessage {
+    padding: 30px 20px;
+  }
+
+  .successText {
+    font-size: 15px;
+  }
+}
+
+/* ==================== Dark Mode Support ==================== */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --success-color: #81c784;
+  }
+}

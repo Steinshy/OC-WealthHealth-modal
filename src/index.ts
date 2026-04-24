@@ -9,5 +9,5 @@
  * - Type definitions: ModalProps, SignupFormData, SignupModalProps, LoginFormData, LoginModalProps, ConfirmModalProps
  */
 
-export { Modal, SignupModal, LoginModal, ConfirmModal } from './components';
-export type { ModalProps, SignupFormData, SignupModalProps, LoginFormData, LoginModalProps, ConfirmModalProps } from './types';
+export { Modal, SignupModal, LoginModal, ConfirmModal, FormField, PasswordField, ErrorBanner, SuccessMessage } from './components';
+export type { ModalProps, SignupFormData, SignupModalProps, LoginFormData, LoginModalProps, ConfirmModalProps, FormFieldProps, PasswordFieldProps, ErrorBannerProps, SuccessMessageProps } from './types';

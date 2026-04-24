@@ -1,0 +1,44 @@
+/**
+ * ErrorBanner.module.css - Error banner styling
+ *
+ * Features:
+ * - Error state background and border
+ * - Accessible color contrast (WCAG 2.1 AA)
+ */
+
+:root {
+  --error-bg: #ffebee;
+  --error-color: #c62828;
+  --error-border: #f44336;
+}
+
+/** Error banner at top of form */
+.errorBanner {
+  background-color: var(--error-bg);
+  border-left: 4px solid var(--error-border);
+  border-radius: 0;
+  color: var(--error-color);
+  font-size: 13px;
+  font-weight: 500;
+  margin: -20px -24px 12px;
+  padding: 12px 16px;
+}
+
+/* ==================== Responsive Design ==================== */
+
+@media (width <= 600px) {
+  .errorBanner {
+    margin: -16px -20px 12px;
+    padding: 10px 14px;
+  }
+}
+
+/* ==================== Dark Mode Support ==================== */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --error-bg: #5f2c2c;
+    --error-color: #ffcdd2;
+    --error-border: #ef5350;
+  }
+}

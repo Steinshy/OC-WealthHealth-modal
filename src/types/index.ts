@@ -17,8 +17,14 @@ export interface ModalProps {
   autoCloseDuration?: number;
   /** Close modal when clicking the backdrop (default: true) */
   closeOnBackdrop?: boolean;
-  /** Show a built-in × close button in the header (default: false) */
+  /** Show a built-in × close button in the header (default: true) */
   showCloseButton?: boolean;
+  /** Allow modal to be dismissed (controls ESC, backdrop, and close button - default: true) */
+  dismissible?: boolean;
+  /** Icon to display in header (e.g., status icon) */
+  icon?: ReactNode;
+  /** Footer content (rendered at bottom of modal) */
+  footer?: ReactNode;
   /** Modal width size variant (default: 'md') */
   size?: 'sm' | 'md' | 'lg';
   /** Additional CSS class applied to the dialog element */
@@ -26,6 +32,14 @@ export interface ModalProps {
   /** Modal content (rendered as children inside dialog) */
   children: ReactNode;
 }
+
+/**
+ * Re-export molecule props from form
+ */
+export type { FormFieldProps } from '../components/form/FormField';
+export type { PasswordFieldProps } from '../components/form/PasswordField';
+export type { ErrorBannerProps } from '../components/form/ErrorBanner';
+export type { SuccessMessageProps } from '../components/form/SuccessMessage';
 
 /**
  * SignupFormData - Form submission payload for SignupModal

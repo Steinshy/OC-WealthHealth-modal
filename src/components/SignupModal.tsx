@@ -1,6 +1,7 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 
 import { Modal } from './Modal';
+import { FormField, PasswordField, ErrorBanner, SuccessMessage } from './form';
 import type { SignupFormData, SignupModalProps } from '../types';
 import styles from './SignupModal.module.css';
 
@@ -57,6 +58,21 @@ export const SignupModal = ({ isOpen, onClose, onSubmit, isLoading = false, erro
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const confirmPasswordRef = useRef<HTMLInputElement>(null);
+  const successCloseTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const clearSuccessCloseTimer = useCallback(() => {
+    if (successCloseTimerRef.current !== null) {
+      clearTimeout(successCloseTimerRef.current);
+      successCloseTimerRef.current = null;
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!isOpen) {
+      clearSuccessCloseTimer();
+    }
+    return () => clearSuccessCloseTimer();
+  }, [isOpen, clearSuccessCloseTimer]);
 
   /**
    * Validate form data and return errors object
@@ -102,6 +118,7 @@ export const SignupModal = ({ isOpen, onClose, onSubmit, isLoading = false, erro
    */
   const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
+    clearSuccessCloseTimer();
 
     // Validate
     const errors = validateForm();
@@ -119,8 +136,8 @@ export const SignupModal = ({ isOpen, onClose, onSubmit, isLoading = false, erro
       await onSubmit(formData);
       setSubmitted(true);
 
-      // Auto-close after 2 seconds
-      setTimeout(() => {
+      successCloseTimerRef.current = setTimeout(() => {
+        successCloseTimerRef.current = null;
         resetForm();
         onClose();
       }, 2000);
@@ -137,6 +154,8 @@ export const SignupModal = ({ isOpen, onClose, onSubmit, isLoading = false, erro
     setFormData({ email: '', password: '', confirmPassword: '' });
     setValidationErrors({});
     setSubmitted(false);
+    setShowPassword(false);
+    setShowConfirmPassword(false);
   };
 
   /**
@@ -170,102 +189,54 @@ export const SignupModal = ({ isOpen, onClose, onSubmit, isLoading = false, erro
   return (
     <Modal isOpen={isOpen} onClose={onClose} title="Sign Up" status={getStatus()}>
       {submitted || showSuccess ? (
-        <div className={styles.successMessage}>
-          <p className={styles.successText}>Account created successfully! Redirecting...</p>
-        </div>
+        <SuccessMessage message="Account created successfully! Redirecting..." />
       ) : (
         <form onSubmit={handleSubmit} className={styles.form} noValidate>
-          {error && <div className={styles.errorBanner}>{error}</div>}
+          {error && <ErrorBanner message={error} />}
 
-          {/* Email field - WCAG: explicit label */}
-          <div className={styles.formGroup}>
-            <label htmlFor="email" className={styles.label}>
-              Email <span className={styles.required}>*</span>
-            </label>
-            <input
-              ref={emailRef}
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              required
-              disabled={isLoading}
-              className={`${styles.input} ${validationErrors.email ? styles.inputError : ''}`}
-              aria-describedby={validationErrors.email ? 'email-error' : undefined}
-            />
-            {validationErrors.email && (
-              <p id="email-error" className={styles.errorMessage}>
-                {validationErrors.email}
-              </p>
-            )}
-          </div>
+          {/* Email field - using FormField molecule */}
+          <FormField
+            label="Email"
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleInputChange}
+            error={validationErrors.email}
+            required
+            disabled={isLoading}
+            ref={emailRef}
+          />
 
-          {/* Password field - WCAG: explicit label */}
-          <div className={styles.formGroup}>
-            <label htmlFor="password" className={styles.label}>
-              Password <span className={styles.required}>*</span>
-            </label>
-            <div className={styles.inputWrapper}>
-              <input
-                ref={passwordRef}
-                type={showPassword ? 'text' : 'password'}
-                id="password"
-                name="password"
-                value={formData.password}
-                onChange={handleInputChange}
-                required
-                disabled={isLoading}
-                className={`${styles.input} ${validationErrors.password ? styles.inputError : ''}`}
-                aria-describedby={validationErrors.password ? 'password-error' : undefined}
-                style={{ paddingRight: '40px' }}
-              />
-              <button type="button" className={styles.togglePassword} onClick={() => setShowPassword(!showPassword)} aria-label={showPassword ? 'Hide password' : 'Show password'} disabled={isLoading}>
-                {showPassword ? '🙈' : '👁️'}
-              </button>
-            </div>
-            {validationErrors.password && (
-              <p id="password-error" className={styles.errorMessage}>
-                {validationErrors.password}
-              </p>
-            )}
-          </div>
+          {/* Password field - using PasswordField molecule */}
+          <PasswordField
+            label="Password"
+            id="password"
+            name="password"
+            value={formData.password}
+            onChange={handleInputChange}
+            error={validationErrors.password}
+            required
+            disabled={isLoading}
+            ref={passwordRef}
+            showPassword={showPassword}
+            onToggleShowPassword={() => setShowPassword(!showPassword)}
+          />
 
-          {/* Confirm password field - WCAG: explicit label */}
-          <div className={styles.formGroup}>
-            <label htmlFor="confirmPassword" className={styles.label}>
-              Confirm Password <span className={styles.required}>*</span>
-            </label>
-            <div className={styles.inputWrapper}>
-              <input
-                ref={confirmPasswordRef}
-                type={showConfirmPassword ? 'text' : 'password'}
-                id="confirmPassword"
-                name="confirmPassword"
-                value={formData.confirmPassword}
-                onChange={handleInputChange}
-                required
-                disabled={isLoading}
-                className={`${styles.input} ${validationErrors.confirmPassword ? styles.inputError : ''}`}
-                aria-describedby={validationErrors.confirmPassword ? 'confirmPassword-error' : undefined}
-                style={{ paddingRight: '40px' }}
-              />
-              <button
-                type="button"
-                className={styles.togglePassword}
-                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                aria-label={showConfirmPassword ? 'Hide password' : 'Show password'}
-                disabled={isLoading}
-              >
-                {showConfirmPassword ? '🙈' : '👁️'}
-              </button>
-            </div>
-            {validationErrors.confirmPassword && (
-              <p id="confirmPassword-error" className={styles.errorMessage}>
-                {validationErrors.confirmPassword}
-              </p>
-            )}
-          </div>
+          {/* Confirm password field - using PasswordField molecule */}
+          <PasswordField
+            label="Confirm Password"
+            id="confirmPassword"
+            name="confirmPassword"
+            value={formData.confirmPassword}
+            onChange={handleInputChange}
+            error={validationErrors.confirmPassword}
+            required
+            disabled={isLoading}
+            ref={confirmPasswordRef}
+            showPassword={showConfirmPassword}
+            onToggleShowPassword={() => setShowConfirmPassword(!showConfirmPassword)}
+          />
 
           {/* Submit button with loading state */}
           <div className={styles.actions}>
