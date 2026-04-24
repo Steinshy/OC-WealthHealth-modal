@@ -10,4 +10,15 @@
  */
 
 export { Modal, SignupModal, LoginModal, ConfirmModal, FormField, PasswordField, ErrorBanner, SuccessMessage } from './components';
-export type { ModalProps, SignupFormData, SignupModalProps, LoginFormData, LoginModalProps, ConfirmModalProps, FormFieldProps, PasswordFieldProps, ErrorBannerProps, SuccessMessageProps } from './types';
+export type {
+  ModalProps,
+  SignupFormData,
+  SignupModalProps,
+  LoginFormData,
+  LoginModalProps,
+  ConfirmModalProps,
+  FormFieldProps,
+  PasswordFieldProps,
+  ErrorBannerProps,
+  SuccessMessageProps,
+} from './types';
