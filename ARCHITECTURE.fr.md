@@ -57,31 +57,31 @@ Tout ce que consomment les intégrateurs est exporté depuis `src/index.ts` :
 
 ### Composants
 
-| Export           | Description                                                                                         |
-| ---------------- | --------------------------------------------------------------------------------------------------- |
-| `Modal`          | Modale de base — `<dialog>` natif, statut, taille, pied, icône, règles de fermeture                 |
-| `SignupModal`    | E-mail + mot de passe + confirmation ; validation côté client ; chargement et erreurs              |
-| `LoginModal`     | E-mail + mot de passe ; mêmes patterns UX que l’inscription                                         |
-| `ConfirmModal`   | Confirmer / annuler avec confirmation async optionnelle + chargement                              |
-| `FormField`      | Libellé + champ + erreur (formulaires personnalisés dans `Modal`)                                   |
-| `PasswordField`  | `FormField` + bascule afficher / masquer le mot de passe                                            |
-| `ErrorBanner`    | Zone d’erreur au niveau formulaire                                                                  |
-| `SuccessMessage` | Zone de succès après envoi                                                                          |
+| Export           | Description                                                                           |
+| ---------------- | ------------------------------------------------------------------------------------- |
+| `Modal`          | Modale de base — `<dialog>` natif, statut, taille, pied, icône, règles de fermeture   |
+| `SignupModal`    | E-mail + mot de passe + confirmation ; validation côté client ; chargement et erreurs |
+| `LoginModal`     | E-mail + mot de passe ; mêmes patterns UX que l’inscription                           |
+| `ConfirmModal`   | Confirmer / annuler avec confirmation async optionnelle + chargement                  |
+| `FormField`      | Libellé + champ + erreur (formulaires personnalisés dans `Modal`)                     |
+| `PasswordField`  | `FormField` + bascule afficher / masquer le mot de passe                              |
+| `ErrorBanner`    | Zone d’erreur au niveau formulaire                                                    |
+| `SuccessMessage` | Zone de succès après envoi                                                            |
 
 ### Hook
 
-| Export     | Description                                                                                                   |
-| ---------- | ------------------------------------------------------------------------------------------------------------- |
+| Export     | Description                                                                                                      |
+| ---------- | ---------------------------------------------------------------------------------------------------------------- |
 | `useTheme` | Pose `data-theme` sur `<html>`, persiste dans `localStorage` sous la clé `wh-theme`, suit `prefers-color-scheme` |
 
 ### Types
 
-| Export                                                                                               | Description                    |
-| ---------------------------------------------------------------------------------------------------- | ------------------------------ |
-| `ModalProps`, `SignupModalProps`, `LoginModalProps`, `ConfirmModalProps`                            | Props des composants         |
-| `SignupFormData`, `LoginFormData`                                                                    | Données envoyées au submit   |
-| `FormFieldProps`, `PasswordFieldProps`, `ErrorBannerProps`, `SuccessMessageProps`                    | Props des primitifs formulaire |
-| `Theme`, `UseThemeReturn`                                                                            | Types du hook thème          |
+| Export                                                                            | Description                    |
+| --------------------------------------------------------------------------------- | ------------------------------ |
+| `ModalProps`, `SignupModalProps`, `LoginModalProps`, `ConfirmModalProps`          | Props des composants           |
+| `SignupFormData`, `LoginFormData`                                                 | Données envoyées au submit     |
+| `FormFieldProps`, `PasswordFieldProps`, `ErrorBannerProps`, `SuccessMessageProps` | Props des primitifs formulaire |
+| `Theme`, `UseThemeReturn`                                                         | Types du hook thème            |
 
 ---
 
@@ -128,10 +128,10 @@ Les animations respectent `prefers-reduced-motion`.
 
 ### Bibliothèque (`npm run build`, `vite.config.ts`)
 
-| Sortie            | Rôle                                      |
-| ----------------- | ----------------------------------------- |
-| `dist/index.js`   | Point d’entrée ESM                        |
-| `dist/index.cjs`  | Point d’entrée CommonJS                   |
+| Sortie           | Rôle                                        |
+| ---------------- | ------------------------------------------- |
+| `dist/index.js`  | Point d’entrée ESM                          |
+| `dist/index.cjs` | Point d’entrée CommonJS                     |
 | `dist/**/*.d.ts` | Déclarations TypeScript (`vite-plugin-dts`) |
 
 Rollup marque comme externes `react`, `react-dom`, `react/jsx-runtime`. Le CSS est injecté dans le bundle à l’exécution via `vite-plugin-css-injected-by-js` : les consommateurs n’importent pas de fichier CSS séparé.
@@ -153,29 +153,29 @@ Le champ `exports` de `package.json` pointe `"."` vers types + ESM + CJS. `"side
 
 ## Commandes de développement
 
-| Commande                  | Rôle                                                                 |
-| ------------------------- | -------------------------------------------------------------------- |
-| `npm run dev`             | Serveur démo Vite (port **5173**) et Storybook (**6006**) via `concurrently` |
-| `npm run dev:demo`        | Démo seule (`vite`)                                                  |
-| `npm run storybook`       | Storybook en dev uniquement                                          |
-| `npm run build`           | Bibliothèque → `dist/`                                               |
-| `npm run build:demo`      | Démo → `dist-demo/` + Storybook → `dist-demo/storybook/`             |
-| `npm run build:storybook` | Build statique Storybook (dossier par défaut `storybook-static/`)   |
-| `npm run preview`         | Démo « production » après `build:demo`                               |
-| `npm run type-check`      | `tsc --noEmit`                                                       |
-| `npm run lint` / `lint:fix` | ESLint                                                            |
-| `npm run lint:styles`     | Stylelint sur `src/**/*.css`                                        |
-| `npm run format` / `format:check` | Prettier                                                    |
+| Commande                          | Rôle                                                                         |
+| --------------------------------- | ---------------------------------------------------------------------------- |
+| `npm run dev`                     | Serveur démo Vite (port **5173**) et Storybook (**6006**) via `concurrently` |
+| `npm run dev:demo`                | Démo seule (`vite`)                                                          |
+| `npm run storybook`               | Storybook en dev uniquement                                                  |
+| `npm run build`                   | Bibliothèque → `dist/`                                                       |
+| `npm run build:demo`              | Démo → `dist-demo/` + Storybook → `dist-demo/storybook/`                     |
+| `npm run build:storybook`         | Build statique Storybook (dossier par défaut `storybook-static/`)            |
+| `npm run preview`                 | Démo « production » après `build:demo`                                       |
+| `npm run type-check`              | `tsc --noEmit`                                                               |
+| `npm run lint` / `lint:fix`       | ESLint                                                                       |
+| `npm run lint:styles`             | Stylelint sur `src/**/*.css`                                                 |
+| `npm run format` / `format:check` | Prettier                                                                     |
 
 ---
 
 ## CI/CD (`.github/workflows/`)
 
-| Workflow         | Déclencheur                         | Actions |
-| ---------------- | ----------------------------------- | ------- |
-| `ci.yml`         | Push et pull request                | `format:check`, ESLint, Stylelint, `type-check`, `build:demo` avec `VITE_BASE_PATH` = `/${{ github.event.repository.name }}/`, puis vérification de `dist-demo/storybook/index.html` |
-| `build-demo.yml` | Push sur **`main`** et **`dev`**    | `build:demo` avec le même chemin de base, vérification Storybook, envoi de **`dist-demo`** comme artefact GitHub Pages, job de déploiement Pages |
-| `publish.yml`    | **Release** GitHub créée            | Vérifie que le commit de release est sur `main`, exécute `prepublishOnly`, `npm publish` |
+| Workflow         | Déclencheur                      | Actions                                                                                                                                                                              |
+| ---------------- | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `ci.yml`         | Push et pull request             | `format:check`, ESLint, Stylelint, `type-check`, `build:demo` avec `VITE_BASE_PATH` = `/${{ github.event.repository.name }}/`, puis vérification de `dist-demo/storybook/index.html` |
+| `build-demo.yml` | Push sur **`main`** et **`dev`** | `build:demo` avec le même chemin de base, vérification Storybook, envoi de **`dist-demo`** comme artefact GitHub Pages, job de déploiement Pages                                     |
+| `publish.yml`    | **Release** GitHub créée         | Vérifie que le commit de release est sur `main`, exécute `prepublishOnly`, `npm publish`                                                                                             |
 
 La publication nécessite le secret de dépôt `NPM_TOKEN`.
 

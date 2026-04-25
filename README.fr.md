@@ -1,4 +1,4 @@
-# WealthHealth-modal
+<h1 align="center">WealthHealth-modal</h1>
 
 [![npm version](https://img.shields.io/npm/v/%40steinshy%2Fwealthhealth-modal?logo=npm)](https://www.npmjs.com/package/@steinshy/wealthhealth-modal)
 [![npm downloads](https://img.shields.io/npm/dm/%40steinshy%2Fwealthhealth-modal?logo=npm&color=blue)](https://www.npmjs.com/package/@steinshy/wealthhealth-modal)
@@ -6,23 +6,28 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-6-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 [![React](https://img.shields.io/badge/React-18%20%7C%2019-61DAFB?logo=react&logoColor=black)](https://react.dev)
 [![WCAG 2.1 AA](https://img.shields.io/badge/WCAG-2.1%20AA-brightgreen)](https://www.w3.org/WAI/WCAG21/quickref/)
-
 [![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite)](https://vitejs.dev)
 [![Storybook](https://img.shields.io/badge/Storybook-10-FF4785?logo=storybook)](https://storybook.js.org)
 [![ESLint](https://img.shields.io/badge/ESLint-9-4B32C3?logo=eslint)](https://eslint.org)
 [![Prettier](https://img.shields.io/badge/Prettier-3-F7B93E?logo=prettier&logoColor=000)](https://prettier.io)
 [![Stylelint](https://img.shields.io/badge/Stylelint-17-000?logo=stylelint)](https://stylelint.io)
 
-**Langue :** Français · [English](./README.md) — **Architecture :** [ARCHITECTURE.fr.md](./ARCHITECTURE.fr.md) · [ARCHITECTURE (en)](./ARCHITECTURE.md)
+<div align="center">
+  <img src="public/mockup/mockup.png" alt="Démo WealthHealth-modal — maquette responsive" />
+</div>
 
 Bibliothèque React légère de modales basée sur l’élément natif `<dialog>`. Inclut des modales prêtes à l’emploi (SignupModal, LoginModal, ConfirmModal) avec validation de formulaire et accessibilité intégrées.
 
 ## Démo en ligne et Storybook
 
-| Ressource | URL |
-| --------- | --- |
-| Démo      | https://steinshy.github.io/OC-WealthHealth-modal/ |
-| Storybook | https://steinshy.github.io/OC-WealthHealth-modal/storybook/ |
+| Ressource      | URL ou lien                                                 |
+| -------------- | ----------------------------------------------------------- |
+| Langue         | Français · [English](./README.md)                           |
+| Architecture   | [ARCHITECTURE.md](./ARCHITECTURE.md)                        |
+| ArchitectureFr | [ARCHITECTURE.fr.md](./ARCHITECTURE.fr.md)                  |
+| GitHub         | https://github.com/Steinshy/OC-WealthHealth-modal           |
+| Démo           | https://steinshy.github.io/OC-WealthHealth-modal/           |
+| Storybook      | https://steinshy.github.io/OC-WealthHealth-modal/storybook/ |
 
 Sur GitHub Pages, la démo et Storybook sont produites dans une même étape CI : la démo est à la racine du site et Storybook est publié sous `storybook/`.
 
@@ -107,36 +112,36 @@ export function AuthPage() {
 
 Modale de base. À utiliser pour du contenu personnalisé.
 
-| Prop                | Type                                                       | Défaut      | Description                                                         |
-| ------------------- | ---------------------------------------------------------- | ----------- | ------------------------------------------------------------------- |
-| `isOpen`            | `boolean`                                                  | obligatoire | Afficher / masquer                                                  |
-| `onClose`           | `() => void`                                               | obligatoire | Appelée une fois à la fermeture                                     |
-| `title`             | `string`                                                   | optionnel   | Titre (en-tête absent si non défini)                                |
-| `children`          | `ReactNode`                                                | obligatoire | Contenu                                                             |
-| `status`            | `'success' \| 'error' \| 'info' \| 'warning' \| 'default'` | `'default'` | État visuel (bordure supérieure)                                    |
-| `size`              | `'sm' \| 'md' \| 'lg'`                                     | `'md'`      | Largeur                                                             |
-| `autoCloseDuration` | `number`                                                   | optionnel   | Fermeture automatique après N ms                                    |
-| `showCloseButton`   | `boolean`                                                  | `true`      | Bouton × (si `title` et `dismissible` le permettent)                |
-| `dismissible`       | `boolean`                                                  | `true`      | Autoriser Échap, fond (si activé) et bouton fermer                    |
-| `closeOnBackdrop`   | `boolean`                                                  | `true`      | Clic à l’extérieur pour fermer                                      |
-| `icon`              | `ReactNode`                                                | optionnel   | Icône d’en-tête                                                     |
-| `footer`            | `ReactNode`                                                | optionnel   | Pied de page sous le contenu                                        |
-| `className`         | `string`                                                   | optionnel   | Classe supplémentaire sur `<dialog>`                                |
+| Prop                | Type                                                       | Défaut      | Description                                          |
+| ------------------- | ---------------------------------------------------------- | ----------- | ---------------------------------------------------- |
+| `isOpen`            | `boolean`                                                  | obligatoire | Afficher / masquer                                   |
+| `onClose`           | `() => void`                                               | obligatoire | Appelée une fois à la fermeture                      |
+| `title`             | `string`                                                   | optionnel   | Titre (en-tête absent si non défini)                 |
+| `children`          | `ReactNode`                                                | obligatoire | Contenu                                              |
+| `status`            | `'success' \| 'error' \| 'info' \| 'warning' \| 'default'` | `'default'` | État visuel (bordure supérieure)                     |
+| `size`              | `'sm' \| 'md' \| 'lg'`                                     | `'md'`      | Largeur                                              |
+| `autoCloseDuration` | `number`                                                   | optionnel   | Fermeture automatique après N ms                     |
+| `showCloseButton`   | `boolean`                                                  | `true`      | Bouton × (si `title` et `dismissible` le permettent) |
+| `dismissible`       | `boolean`                                                  | `true`      | Autoriser Échap, fond (si activé) et bouton fermer   |
+| `closeOnBackdrop`   | `boolean`                                                  | `true`      | Clic à l’extérieur pour fermer                       |
+| `icon`              | `ReactNode`                                                | optionnel   | Icône d’en-tête                                      |
+| `footer`            | `ReactNode`                                                | optionnel   | Pied de page sous le contenu                         |
+| `className`         | `string`                                                   | optionnel   | Classe supplémentaire sur `<dialog>`                 |
 
 ### SignupModal
 
 Formulaire d’inscription (e-mail, mot de passe, confirmation).
 
-| Prop            | Type                                      | Défaut      | Description                                                |
-| --------------- | ----------------------------------------- | ----------- | ---------------------------------------------------------- |
-| `isOpen`        | `boolean`                                 | obligatoire | Afficher / masquer                                         |
-| `onClose`       | `() => void`                              | obligatoire | Callback à la fermeture                                    |
-| `onSubmit`      | `(data: SignupFormData) => Promise<void>` | obligatoire | Envoi async ; lever une exception en cas d’échec           |
-| `isLoading`     | `boolean`                                 | `false`     | Spinner et envoi désactivé                                 |
-| `error`         | `string`                                  | optionnel   | Bandeau d’erreur en haut                                     |
-| `initialData`   | `SignupFormData`                          | optionnel   | Champs préremplis                                            |
-| `showSuccess`   | `boolean`                                 | optionnel   | Afficher le succès sans soumettre (ex. démos)              |
-| `initialErrors` | `Record<string, string>`                  | optionnel   | Erreurs par champ à l’ouverture                            |
+| Prop            | Type                                      | Défaut      | Description                                      |
+| --------------- | ----------------------------------------- | ----------- | ------------------------------------------------ |
+| `isOpen`        | `boolean`                                 | obligatoire | Afficher / masquer                               |
+| `onClose`       | `() => void`                              | obligatoire | Callback à la fermeture                          |
+| `onSubmit`      | `(data: SignupFormData) => Promise<void>` | obligatoire | Envoi async ; lever une exception en cas d’échec |
+| `isLoading`     | `boolean`                                 | `false`     | Spinner et envoi désactivé                       |
+| `error`         | `string`                                  | optionnel   | Bandeau d’erreur en haut                         |
+| `initialData`   | `SignupFormData`                          | optionnel   | Champs préremplis                                |
+| `showSuccess`   | `boolean`                                 | optionnel   | Afficher le succès sans soumettre (ex. démos)    |
+| `initialErrors` | `Record<string, string>`                  | optionnel   | Erreurs par champ à l’ouverture                  |
 
 ### LoginModal
 
@@ -148,7 +153,7 @@ Formulaire de connexion (e-mail et mot de passe).
 | `onClose`       | `() => void`                             | obligatoire | Callback à la fermeture                          |
 | `onSubmit`      | `(data: LoginFormData) => Promise<void>` | obligatoire | Envoi async ; lever une exception en cas d’échec |
 | `isLoading`     | `boolean`                                | `false`     | Spinner et envoi désactivé                       |
-| `error`         | `string`                                 | optionnel   | Bandeau d’erreur en haut                           |
+| `error`         | `string`                                 | optionnel   | Bandeau d’erreur en haut                         |
 | `initialData`   | `LoginFormData`                          | optionnel   | Champs préremplis                                |
 | `showSuccess`   | `boolean`                                | optionnel   | Afficher le succès sans soumettre                |
 | `initialErrors` | `Record<string, string>`                 | optionnel   | Erreurs par champ à l’ouverture                  |
@@ -190,12 +195,12 @@ export function App() {
 }
 ```
 
-| Valeur retournée | Type                 | Description                          |
-| ---------------- | -------------------- | ------------------------------------ |
-| `theme`          | `'light' \| 'dark'`  | Thème actif                          |
-| `isDark`         | `boolean`            | `true` si le thème sombre est actif  |
-| `toggleTheme`    | `() => void`         | Basculer clair / sombre              |
-| `setTheme`       | `(t: Theme) => void` | Forcer un thème                      |
+| Valeur retournée | Type                 | Description                         |
+| ---------------- | -------------------- | ----------------------------------- |
+| `theme`          | `'light' \| 'dark'`  | Thème actif                         |
+| `isDark`         | `boolean`            | `true` si le thème sombre est actif |
+| `toggleTheme`    | `() => void`         | Basculer clair / sombre             |
+| `setTheme`       | `(t: Theme) => void` | Forcer un thème                     |
 
 Types exportés : `Theme`, `UseThemeReturn` (voir les exports du paquet).
 
@@ -277,14 +282,14 @@ Surcharge du mode sombre via `data-theme` (posé par `useTheme`) ou la requête 
 
 ## Développer ce dépôt
 
-| Commande             | Description |
-| -------------------- | ----------- |
-| `npm run dev`        | Démo (http://localhost:5173) et Storybook (http://localhost:6006) ensemble |
-| `npm run dev:demo`   | Démo seule |
-| `npm run storybook`  | Storybook seul |
-| `npm run build`      | Build bibliothèque vers `dist/` |
+| Commande             | Description                                                                     |
+| -------------------- | ------------------------------------------------------------------------------- |
+| `npm run dev`        | Démo (http://localhost:5173) et Storybook (http://localhost:6006) ensemble      |
+| `npm run dev:demo`   | Démo seule                                                                      |
+| `npm run storybook`  | Storybook seul                                                                  |
+| `npm run build`      | Build bibliothèque vers `dist/`                                                 |
 | `npm run build:demo` | Démo + Storybook statique dans `dist-demo/` (même disposition que GitHub Pages) |
-| `npm run preview`    | Servir `dist-demo` en local après `build:demo` |
+| `npm run preview`    | Servir `dist-demo` en local après `build:demo`                                  |
 
 La CI exécute le formatage, ESLint, Stylelint, la vérification TypeScript et `build:demo` avec le chemin de base GitHub Pages, puis vérifie la présence de `dist-demo/storybook/index.html`.
 

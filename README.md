@@ -1,4 +1,4 @@
-# WealthHealth-modal
+<h1 align="center">WealthHealth-modal</h1>
 
 [![npm version](https://img.shields.io/npm/v/%40steinshy%2Fwealthhealth-modal?logo=npm)](https://www.npmjs.com/package/@steinshy/wealthhealth-modal)
 [![npm downloads](https://img.shields.io/npm/dm/%40steinshy%2Fwealthhealth-modal?logo=npm&color=blue)](https://www.npmjs.com/package/@steinshy/wealthhealth-modal)
@@ -6,23 +6,28 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-6-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 [![React](https://img.shields.io/badge/React-18%20%7C%2019-61DAFB?logo=react&logoColor=black)](https://react.dev)
 [![WCAG 2.1 AA](https://img.shields.io/badge/WCAG-2.1%20AA-brightgreen)](https://www.w3.org/WAI/WCAG21/quickref/)
-
 [![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite)](https://vitejs.dev)
 [![Storybook](https://img.shields.io/badge/Storybook-10-FF4785?logo=storybook)](https://storybook.js.org)
 [![ESLint](https://img.shields.io/badge/ESLint-9-4B32C3?logo=eslint)](https://eslint.org)
 [![Prettier](https://img.shields.io/badge/Prettier-3-F7B93E?logo=prettier&logoColor=000)](https://prettier.io)
 [![Stylelint](https://img.shields.io/badge/Stylelint-17-000?logo=stylelint)](https://stylelint.io)
 
-**Language:** English · [Français](./README.fr.md) — **Architecture:** [ARCHITECTURE.md](./ARCHITECTURE.md) · [ARCHITECTURE (fr)](./ARCHITECTURE.fr.md)
+<div align="center">
+  <img src="public/mockup/mockup.png" alt="WealthHealth-modal demo — responsive mockup" />
+</div>
 
 A lightweight React modal component library using native `<dialog>` element. Includes pre-built SignupModal, LoginModal, and ConfirmModal with form validation and accessibility built in.
 
 ## Live demo and Storybook
 
-| Resource  | URL                                                         |
-| --------- | ----------------------------------------------------------- |
-| Demo app  | https://steinshy.github.io/OC-WealthHealth-modal/           |
-| Storybook | https://steinshy.github.io/OC-WealthHealth-modal/storybook/ |
+| Resource       | URL / link                                                  |
+| -------------- | ----------------------------------------------------------- |
+| Language       | English · [Français](./README.fr.md)                        |
+| Architecture   | [ARCHITECTURE.md](./ARCHITECTURE.md)                        |
+| ArchitectureFr | [ARCHITECTURE.fr.md](./ARCHITECTURE.fr.md)                  |
+| GitHub         | https://github.com/Steinshy/OC-WealthHealth-modal           |
+| Demo app       | https://steinshy.github.io/OC-WealthHealth-modal/           |
+| Storybook      | https://steinshy.github.io/OC-WealthHealth-modal/storybook/ |
 
 On GitHub Pages, the demo and Storybook are produced in one CI step: the demo is at the site root and Storybook is deployed under `storybook/`.
 

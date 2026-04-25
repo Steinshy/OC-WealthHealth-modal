@@ -57,31 +57,31 @@ Everything consumed by users is exported from `src/index.ts`:
 
 ### Components
 
-| Export            | Description                                                                                    |
-| ----------------- | ---------------------------------------------------------------------------------------------- |
-| `Modal`           | Base modal — native `<dialog>`, configurable status, size, footer, icon, dismiss rules         |
-| `SignupModal`     | Email + password + confirm; client validation; loading and error UX                            |
-| `LoginModal`      | Email + password; same UX patterns as signup                                                   |
-| `ConfirmModal`    | Confirm / cancel with optional async confirm + loading                                         |
-| `FormField`       | Label + input + error (for custom forms inside `Modal`)                                        |
-| `PasswordField`   | `FormField` + visibility toggle                                                                |
-| `ErrorBanner`     | Form-level error region                                                                        |
-| `SuccessMessage`  | Post-submit success region                                                                     |
+| Export           | Description                                                                            |
+| ---------------- | -------------------------------------------------------------------------------------- |
+| `Modal`          | Base modal — native `<dialog>`, configurable status, size, footer, icon, dismiss rules |
+| `SignupModal`    | Email + password + confirm; client validation; loading and error UX                    |
+| `LoginModal`     | Email + password; same UX patterns as signup                                           |
+| `ConfirmModal`   | Confirm / cancel with optional async confirm + loading                                 |
+| `FormField`      | Label + input + error (for custom forms inside `Modal`)                                |
+| `PasswordField`  | `FormField` + visibility toggle                                                        |
+| `ErrorBanner`    | Form-level error region                                                                |
+| `SuccessMessage` | Post-submit success region                                                             |
 
 ### Hook
 
-| Export     | Description                                                                                                   |
-| ---------- | ------------------------------------------------------------------------------------------------------------- |
+| Export     | Description                                                                                                    |
+| ---------- | -------------------------------------------------------------------------------------------------------------- |
 | `useTheme` | Sets `data-theme` on `<html>`, persists under `localStorage` key `wh-theme`, syncs with `prefers-color-scheme` |
 
 ### Types
 
-| Export                                                                                               | Description                |
-| ---------------------------------------------------------------------------------------------------- | -------------------------- |
-| `ModalProps`, `SignupModalProps`, `LoginModalProps`, `ConfirmModalProps`                            | Component props            |
-| `SignupFormData`, `LoginFormData`                                                                    | Submit payloads            |
-| `FormFieldProps`, `PasswordFieldProps`, `ErrorBannerProps`, `SuccessMessageProps`                    | Form primitive props       |
-| `Theme`, `UseThemeReturn`                                                                            | Theme hook types           |
+| Export                                                                            | Description          |
+| --------------------------------------------------------------------------------- | -------------------- |
+| `ModalProps`, `SignupModalProps`, `LoginModalProps`, `ConfirmModalProps`          | Component props      |
+| `SignupFormData`, `LoginFormData`                                                 | Submit payloads      |
+| `FormFieldProps`, `PasswordFieldProps`, `ErrorBannerProps`, `SuccessMessageProps` | Form primitive props |
+| `Theme`, `UseThemeReturn`                                                         | Theme hook types     |
 
 ---
 
@@ -128,10 +128,10 @@ Dark appearance is driven by:
 
 ### Library (`npm run build`, `vite.config.ts`)
 
-| Output            | Role                                      |
-| ----------------- | ----------------------------------------- |
-| `dist/index.js`   | ESM entry                                 |
-| `dist/index.cjs`  | CommonJS entry                            |
+| Output           | Role                                        |
+| ---------------- | ------------------------------------------- |
+| `dist/index.js`  | ESM entry                                   |
+| `dist/index.cjs` | CommonJS entry                              |
 | `dist/**/*.d.ts` | TypeScript declarations (`vite-plugin-dts`) |
 
 Rollup `external`: `react`, `react-dom`, `react/jsx-runtime`. CSS is injected at runtime in the bundle via `vite-plugin-css-injected-by-js` so consumers do not import separate CSS files.
@@ -153,29 +153,29 @@ Rollup `external`: `react`, `react-dom`, `react/jsx-runtime`. CSS is injected at
 
 ## Development commands
 
-| Command                 | Purpose                                                                 |
-| ----------------------- | ----------------------------------------------------------------------- |
-| `npm run dev`           | Demo Vite server (port **5173**) and Storybook (**6006**) via `concurrently` |
-| `npm run dev:demo`      | Demo only (`vite`)                                                      |
-| `npm run storybook`     | Storybook dev server only                                               |
-| `npm run build`         | Library → `dist/`                                                       |
-| `npm run build:demo`    | Demo → `dist-demo/` + Storybook → `dist-demo/storybook/`                |
-| `npm run build:storybook` | Static Storybook build (default out dir `storybook-static/`)        |
-| `npm run preview`       | Production-like demo after `build:demo`                               |
-| `npm run type-check`    | `tsc --noEmit`                                                          |
-| `npm run lint` / `lint:fix` | ESLint                                                              |
-| `npm run lint:styles`   | Stylelint on `src/**/*.css`                                             |
-| `npm run format` / `format:check` | Prettier                                                      |
+| Command                           | Purpose                                                                      |
+| --------------------------------- | ---------------------------------------------------------------------------- |
+| `npm run dev`                     | Demo Vite server (port **5173**) and Storybook (**6006**) via `concurrently` |
+| `npm run dev:demo`                | Demo only (`vite`)                                                           |
+| `npm run storybook`               | Storybook dev server only                                                    |
+| `npm run build`                   | Library → `dist/`                                                            |
+| `npm run build:demo`              | Demo → `dist-demo/` + Storybook → `dist-demo/storybook/`                     |
+| `npm run build:storybook`         | Static Storybook build (default out dir `storybook-static/`)                 |
+| `npm run preview`                 | Production-like demo after `build:demo`                                      |
+| `npm run type-check`              | `tsc --noEmit`                                                               |
+| `npm run lint` / `lint:fix`       | ESLint                                                                       |
+| `npm run lint:styles`             | Stylelint on `src/**/*.css`                                                  |
+| `npm run format` / `format:check` | Prettier                                                                     |
 
 ---
 
 ## CI/CD (`.github/workflows/`)
 
-| Workflow          | Trigger                         | What it does |
-| ----------------- | ------------------------------- | ------------ |
-| `ci.yml`          | Push and pull request           | `format:check`, ESLint, Stylelint, `type-check`, `build:demo` with `VITE_BASE_PATH` set to `/${{ github.event.repository.name }}/`, then verifies `dist-demo/storybook/index.html` |
-| `build-demo.yml`  | Push to **`main`** and **`dev`** | `build:demo` with the same base path, verifies Storybook output, uploads **`dist-demo`** as the GitHub Pages artifact, deploy job publishes Pages |
-| `publish.yml`     | GitHub **Release** created      | Ensures the release commit is on `main`, runs `prepublishOnly`, `npm publish` |
+| Workflow         | Trigger                          | What it does                                                                                                                                                                       |
+| ---------------- | -------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ci.yml`         | Push and pull request            | `format:check`, ESLint, Stylelint, `type-check`, `build:demo` with `VITE_BASE_PATH` set to `/${{ github.event.repository.name }}/`, then verifies `dist-demo/storybook/index.html` |
+| `build-demo.yml` | Push to **`main`** and **`dev`** | `build:demo` with the same base path, verifies Storybook output, uploads **`dist-demo`** as the GitHub Pages artifact, deploy job publishes Pages                                  |
+| `publish.yml`    | GitHub **Release** created       | Ensures the release commit is on `main`, runs `prepublishOnly`, `npm publish`                                                                                                      |
 
 Publishing requires `NPM_TOKEN` in repository secrets.
 
