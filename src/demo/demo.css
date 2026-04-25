@@ -12,8 +12,10 @@ html {
 
 body {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100dvh;
   min-height: 100vh;
-  padding: 20px;
+  padding: calc(env(safe-area-inset-top, 0px) + clamp(12px, 4vw, 20px)) calc(env(safe-area-inset-right, 0px) + clamp(12px, 4vw, 20px)) calc(env(safe-area-inset-bottom, 0px) + clamp(12px, 4vw, 20px))
+    calc(env(safe-area-inset-left, 0px) + clamp(12px, 4vw, 20px));
 }
 
 #root {

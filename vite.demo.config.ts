@@ -11,6 +11,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
  */
 export default defineConfig({
   plugins: [react()],
+  publicDir: resolve(__dirname, 'demo-public'),
   root: '.',
   base: process.env.VITE_BASE_PATH || '/',
   resolve: {

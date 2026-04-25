@@ -38,3 +38,11 @@ jobs:
 
       - name: Type check
         run: npm run type-check
+
+      - name: Build demo and Storybook (GitHub Pages layout)
+        env:
+          VITE_BASE_PATH: /${{ github.event.repository.name }}/
+        run: npm run build:demo
+
+      - name: Verify Storybook static output
+        run: test -f dist-demo/storybook/index.html

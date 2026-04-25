@@ -1,5 +1,6 @@
 dist
 dist-demo
+storybook-static
 node_modules
 coverage
 package-lock.json

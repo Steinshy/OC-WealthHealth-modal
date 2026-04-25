@@ -13,7 +13,18 @@
 [![Prettier](https://img.shields.io/badge/Prettier-3-F7B93E?logo=prettier&logoColor=000)](https://prettier.io)
 [![Stylelint](https://img.shields.io/badge/Stylelint-17-000?logo=stylelint)](https://stylelint.io)
 
+**Language:** English · [Français](./README.fr.md) — **Architecture:** [ARCHITECTURE.md](./ARCHITECTURE.md) · [ARCHITECTURE (fr)](./ARCHITECTURE.fr.md)
+
 A lightweight React modal component library using native `<dialog>` element. Includes pre-built SignupModal, LoginModal, and ConfirmModal with form validation and accessibility built in.
+
+## Live demo and Storybook
+
+| Resource  | URL                                                         |
+| --------- | ----------------------------------------------------------- |
+| Demo app  | https://steinshy.github.io/OC-WealthHealth-modal/           |
+| Storybook | https://steinshy.github.io/OC-WealthHealth-modal/storybook/ |
+
+On GitHub Pages, the demo and Storybook are produced in one CI step: the demo is at the site root and Storybook is deployed under `storybook/`.
 
 ## Features
 
@@ -28,7 +39,7 @@ A lightweight React modal component library using native `<dialog>` element. Inc
 
 ## Prerequisites
 
-- **Node.js** >= 18
+- **Node.js** 18 or newer (repository CI uses Node 22)
 - **React** 18 or 19
 
 ## Install
@@ -62,14 +73,14 @@ export function App() {
 ### Signup Form
 
 ```tsx
-import { SignupModal } from '@steinshy/wealthhealth-modal';
+import { SignupModal, type SignupFormData } from '@steinshy/wealthhealth-modal';
 import { useState } from 'react';
 
 export function AuthPage() {
   const [isOpen, setIsOpen] = useState(false);
   const [error, setError] = useState<string>();
 
-  const handleSignup = async (data) => {
+  const handleSignup = async (data: SignupFormData) => {
     try {
       await fetch('/api/auth/signup', {
         method: 'POST',
@@ -116,19 +127,31 @@ Base modal component. Use for custom content.
 
 Pre-built signup form with email, password, password confirmation.
 
-| Prop        | Type                      | Default   | Description                  |
-| ----------- | ------------------------- | --------- | ---------------------------- |
-| `isOpen`    | `boolean`                 | required  | Show/hide                    |
-| `onClose`   | `() => void`              | required  | Close callback               |
-| `onSubmit`  | `(data) => Promise<void>` | required  | Form submission handler      |
-| `isLoading` | `boolean`                 | `false`   | Show spinner, disable button |
-| `error`     | `string`                  | undefined | Error message at top         |
+| Prop            | Type                                      | Default  | Description                                     |
+| --------------- | ----------------------------------------- | -------- | ----------------------------------------------- |
+| `isOpen`        | `boolean`                                 | required | Show/hide                                       |
+| `onClose`       | `() => void`                              | required | Close callback                                  |
+| `onSubmit`      | `(data: SignupFormData) => Promise<void>` | required | Async submit; throw on failure                  |
+| `isLoading`     | `boolean`                                 | `false`  | Spinner and disabled submit                     |
+| `error`         | `string`                                  | optional | Error banner at top                             |
+| `initialData`   | `SignupFormData`                          | optional | Pre-filled fields                               |
+| `showSuccess`   | `boolean`                                 | optional | Show success UI without submitting (e.g. demos) |
+| `initialErrors` | `Record<string, string>`                  | optional | Field-level errors on open                      |
 
 ### LoginModal
 
 Pre-built login form with email and password.
 
-Same props as SignupModal (minus confirmPassword validation).
+| Prop            | Type                                     | Default  | Description                        |
+| --------------- | ---------------------------------------- | -------- | ---------------------------------- |
+| `isOpen`        | `boolean`                                | required | Show/hide                          |
+| `onClose`       | `() => void`                             | required | Close callback                     |
+| `onSubmit`      | `(data: LoginFormData) => Promise<void>` | required | Async submit; throw on failure     |
+| `isLoading`     | `boolean`                                | `false`  | Spinner and disabled submit        |
+| `error`         | `string`                                 | optional | Error banner at top                |
+| `initialData`   | `LoginFormData`                          | optional | Pre-filled fields                  |
+| `showSuccess`   | `boolean`                                | optional | Show success UI without submitting |
+| `initialErrors` | `Record<string, string>`                 | optional | Field-level errors on open         |
 
 ### ConfirmModal
 
@@ -150,7 +173,7 @@ Simple yes/no confirmation dialog.
 
 ### `useTheme()`
 
-A hook that manages light/dark mode. It sets `data-theme` on `<html>`, persists the choice to `localStorage`, and defaults to the OS `prefers-color-scheme` on first visit.
+A hook that manages light/dark mode. It sets `data-theme` on `<html>`, persists the choice under the `localStorage` key **`wh-theme`**, and defaults to the OS `prefers-color-scheme` on first visit.
 
 ```tsx
 import { useTheme } from '@steinshy/wealthhealth-modal';
@@ -160,21 +183,21 @@ export function App() {
 
   return (
     <>
-      <button onClick={toggleTheme}>
-        {isDark ? '☀ Light mode' : '☾ Dark mode'}
-      </button>
+      <button onClick={toggleTheme}>{isDark ? '☀ Light mode' : '☾ Dark mode'}</button>
       {/* All modals respond automatically */}
     </>
   );
 }
 ```
 
-| Return value  | Type                        | Description                                      |
-| ------------- | --------------------------- | ------------------------------------------------ |
-| `theme`       | `'light' \| 'dark'`         | Current active theme                             |
-| `isDark`      | `boolean`                   | `true` when dark mode is active                  |
-| `toggleTheme` | `() => void`                | Toggle between light and dark                    |
-| `setTheme`    | `(t: Theme) => void`        | Set a specific theme                             |
+| Return value  | Type                 | Description                     |
+| ------------- | -------------------- | ------------------------------- |
+| `theme`       | `'light' \| 'dark'`  | Current active theme            |
+| `isDark`      | `boolean`            | `true` when dark mode is active |
+| `toggleTheme` | `() => void`         | Toggle between light and dark   |
+| `setTheme`    | `(t: Theme) => void` | Set a specific theme            |
+
+Exported types: `Theme`, `UseThemeReturn` (see package exports).
 
 The hook writes `data-theme="light"` or `data-theme="dark"` to the `<html>` element. All library components pick this up automatically — no ThemeProvider or prop drilling required.
 
@@ -201,7 +224,7 @@ Available CSS custom properties:
   --modal-text: rgba(0, 0, 0, 0.87);
   --modal-text-light: rgba(0, 0, 0, 0.6);
   --modal-border-radius: 4px;
-  --modal-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
+  --modal-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
   --modal-border-color-success: #4caf50;
   --modal-border-color-error: #f44336;
   --modal-border-color-info: #2196f3;
@@ -252,6 +275,21 @@ Override dark mode values via `data-theme` (set by `useTheme`) or the media quer
 | Safari  | 15.4+   |
 | Edge    | 79+     |
 
+## Developing this repository
+
+| Command              | Description                                                                    |
+| -------------------- | ------------------------------------------------------------------------------ |
+| `npm run dev`        | Demo (http://localhost:5173) and Storybook (http://localhost:6006) together    |
+| `npm run dev:demo`   | Demo only                                                                      |
+| `npm run storybook`  | Storybook only                                                                 |
+| `npm run build`      | Library build to `dist/`                                                       |
+| `npm run build:demo` | Demo + Storybook static output into `dist-demo/` (same layout as GitHub Pages) |
+| `npm run preview`    | Serve `dist-demo` locally after `build:demo`                                   |
+
+CI runs formatting, ESLint, Stylelint, type-check, and `build:demo` with the GitHub Pages base path, then checks that `dist-demo/storybook/index.html` exists.
+
+For a deeper view of folders, builds, and workflows, see [ARCHITECTURE.md](./ARCHITECTURE.md) or the [French architecture doc](./ARCHITECTURE.fr.md).
+
 ## License
 
 MIT
@@ -260,6 +298,4 @@ MIT
 
 **GitHub:** https://github.com/Steinshy/OC-WealthHealth-modal
 
-**Demo** https://steinshy.github.io/OC-WealthHealth-modal/
-
-**Original Project Repo** https://github.com/OpenClassrooms-Student-Center/P12_Front-end
+**Original OpenClassrooms project** https://github.com/OpenClassrooms-Student-Center/P12_Front-end
