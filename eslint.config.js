@@ -6,7 +6,7 @@ import eslintConfigPrettier from 'eslint-config-prettier';
 
 export default tseslint.config(
   {
-    ignores: ['dist/**', 'dist-demo/**', 'node_modules/**', 'coverage/**', '**/*.cjs'],
+    ignores: ['dist/**', 'dist-demo/**', 'node_modules/**', 'coverage/**', 'storybook-static/**', '**/*.cjs'],
   },
   eslint.configs.recommended,
   ...tseslint.configs.recommended,

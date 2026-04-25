@@ -1,8 +1,65 @@
-## [0.1.0]
+# Changelog
+
+The **released version** shown in documentation is the npm badge in `README.md` and the `"version"` field in `package.json`. This file summarizes changes **by git tag**. For full history between tags, use GitHub: `https://github.com/Steinshy/OC-WealthHealth-modal/compare/<old>...<new>`.
+
+---
+
+## [0.2.2] — 2026-04-25
+
+**Tag:** `v0.2.2` · **Previous:** `v0.2.0`
+
+### Commits (`v0.2.0..v0.2.2`, no merge commits)
+
+- `c88b308` — 0.2.2 (version bump)
+- `5bf798c` — Chore: fix css import
+
+---
+
+## [0.2.0] — 2026-04-25
+
+**Tag:** `v0.2.0` · **Previous:** `v0.1.1`
+
+### Commits (`v0.1.1..v0.2.0`, no merge commits)
+
+- `a6e09b0` — 0.2.0 (version bump)
+- `b721d3b` — chore: update package-lock
+- `600dea3` — feat: add useTheme hook with light/dark toggle, data-theme CSS support across all components, docs
+- `e32f713` — chore: prettier fix
+- `98157ed` — feat: Storybook, shared form components, Modal icon/footer/dismissible. Bugfix: onClose, forwardRef fields, success timers
+
+---
+
+## [0.1.1] — 2026-04-23
+
+**Tag:** `v0.1.1` · **Previous:** initial import (`c5f56c3`)
+
+### Highlights (from history up to this tag)
+
+- Library scaffold, Vite dual build (ESM/CJS), demo app, GitHub Pages + CI workflows
+- Modal, Signup, Login, Confirm components; WCAG-oriented forms and styling
+- Package rename to `@steinshy/wealthhealth-modal`, lint/format/config hardening
 
 ### Fixed
 
-- Password and confirm-password inputs now stretch full width inside their flex wrapper (`width: 100%` added to `.input` in SignupModal.module.css and LoginModal.module.css)
-- ConfirmModal demo no longer blocks with `alert()` after confirmation; modal closes cleanly after a short async delay
-- GitHub Pages deploy now sets `VITE_BASE_PATH` so assets resolve correctly under the repo sub-path (`/OC-WealthHealth-modal/`)
-- GitHub Pages deploy now runs on both `main` and `dev` branches (removed `main`-only guard on the deploy job)
+- Password and confirm-password inputs stretch full width inside their flex wrapper (`width: 100%` on `.input` in SignupModal and LoginModal CSS modules)
+- ConfirmModal demo no longer blocks with `alert()` after confirmation; modal closes after a short async delay
+- GitHub Pages build sets `VITE_BASE_PATH` so assets resolve under the repo sub-path
+- GitHub Pages workflow runs on both `main` and `dev` branches
+
+### Commits (`c5f56c3..v0.1.1`, no merge commits)
+
+- `d717b75` — 0.1.1
+- `c3bc5f9` — chore: change name
+- `72a0ecf` — chore: lint fix
+- `1fd1e9d` — chore: update config/docs/git worker. Fix some design
+- `436998e` — fix
+- `a998a4a` — run format
+- `26855e5` — fix build demo
+- `4268683` — Add github page on build, update package.json
+- `a9224f1` — Add workflow: build-demo, update ci, publish. Bug fix
+- `cd6c3a7` — Small cleanup + fix
+- `26a8dd6` — Update readme
+- `d356a7f` — Ci: style
+- `40138b0` — fix ci
+- `f58059f` — feat: initialize hrnet-modal component library
+- `8c781c6` — init project structure
