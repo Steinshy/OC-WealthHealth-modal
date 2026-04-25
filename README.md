@@ -300,7 +300,3 @@ For a deeper view of folders, builds, and workflows, see [ARCHITECTURE.md](./ARC
 MIT
 
 ---
-
-**GitHub:** https://github.com/Steinshy/OC-WealthHealth-modal
-
-**Original OpenClassrooms project** https://github.com/OpenClassrooms-Student-Center/P12_Front-end

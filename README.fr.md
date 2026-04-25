@@ -300,7 +300,3 @@ Pour l’arborescence, les builds et les workflows : [ARCHITECTURE.fr.md](./ARCH
 MIT
 
 ---
-
-**GitHub :** https://github.com/Steinshy/OC-WealthHealth-modal
-
-**Projet OpenClassrooms d’origine :** https://github.com/OpenClassrooms-Student-Center/P12_Front-end
