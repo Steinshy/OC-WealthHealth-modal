@@ -28,6 +28,7 @@ Bibliothèque React légère de modales basée sur l’élément natif `<dialog>
 | GitHub         | https://github.com/Steinshy/OC-WealthHealth-modal           |
 | Démo           | https://steinshy.github.io/OC-WealthHealth-modal/           |
 | Storybook      | https://steinshy.github.io/OC-WealthHealth-modal/storybook/ |
+| Npm Package    | https://www.npmjs.com/package/@steinshy/wealthhealth-modal  |
 
 Sur GitHub Pages, la démo et Storybook sont produites dans une même étape CI : la démo est à la racine du site et Storybook est publié sous `storybook/`.
 

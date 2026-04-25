@@ -28,6 +28,7 @@ A lightweight React modal component library using native `<dialog>` element. Inc
 | GitHub         | https://github.com/Steinshy/OC-WealthHealth-modal           |
 | Demo app       | https://steinshy.github.io/OC-WealthHealth-modal/           |
 | Storybook      | https://steinshy.github.io/OC-WealthHealth-modal/storybook/ |
+| Npm Package    | https://www.npmjs.com/package/@steinshy/wealthhealth-modal  |
 
 On GitHub Pages, the demo and Storybook are produced in one CI step: the demo is at the site root and Storybook is deployed under `storybook/`.
 
