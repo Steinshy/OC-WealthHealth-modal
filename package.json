@@ -1,16 +1,40 @@
 {
-  "name": "hrnet-modal",
-  "version": "0.1.0",
-  "description": "Modern, accessible modal component library for React",
+  "name": "@steinshy/wealthhealth-modal",
+  "version": "0.1.1",
+  "description": "A modern, accessible modal component library for React—published to npm as a proof of concept for OpenClassroom project.",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Steinshy",
   "type": "module",
   "main": "./dist/index.cjs",
-  "types": "./dist/index.d.ts",
+  "module": "./dist/index.js",
+  "types": "./dist/src/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG"
   ],
+  "keywords": [
+    "react",
+    "modal",
+    "dialog",
+    "component",
+    "typescript",
+    "wcag",
+    "accessible"
+  ],
+  "homepage": "https://github.com/Steinshy/OC-WealthHealth-modal",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Steinshy/OC-WealthHealth-modal"
+  },
+  "demo": "https://steinshy.github.io/OC-WealthHealth-modal/",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs",
       "default": "./dist/index.js"
@@ -23,14 +47,16 @@
     "dev": "vite",
     "build": "vite build",
     "build:demo": "vite build --config vite.demo.config.ts",
-    "preview": "vite preview",
+    "preview": "npm run build:demo && vite preview --config vite.demo.config.ts",
     "type-check": "tsc --noEmit",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "lint:styles": "stylelint \"src/**/*.css\"",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "prepublishOnly": "npm run type-check && npm run build"
+    "prepublishOnly": "npm run type-check && npm run build",
+    "storybook": "storybook dev -p 6006",
+    "build:storybook": "storybook build"
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",
@@ -38,6 +64,9 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",
+    "@storybook/addon-a11y": "^10.3.5",
+    "@storybook/react": "^10.3.5",
+    "@storybook/react-vite": "^10.3.5",
     "@types/node": "^25.6.0",
     "@types/react": "^19",
     "@types/react-dom": "^19",
@@ -45,28 +74,19 @@
     "eslint": "^9.39.4",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^7.1.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
     "prettier": "^3.8.3",
     "react": "^19",
     "react-dom": "^19",
-    "stylelint": "^17.8.0",
+    "storybook": "^10.3.5",
+    "stylelint": "^17.9.0",
     "stylelint-config-css-modules": "^4.6.0",
     "stylelint-config-standard": "^40.0.0",
     "stylelint-order": "^8.1.1",
-    "terser": "^5",
+    "terser": "^5.46.2",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.58.2",
-    "vite": "^8",
+    "typescript-eslint": "^8.59.0",
+    "vite": "^8.0.10",
     "vite-plugin-dts": "^4.5.4"
-  },
-  "keywords": [
-    "react",
-    "modal",
-    "dialog",
-    "component",
-    "typescript",
-    "wcag",
-    "accessible"
-  ],
-  "license": "MIT"
+  }
 }

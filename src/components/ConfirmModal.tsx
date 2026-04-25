@@ -1,6 +1,6 @@
 import { Modal } from './Modal';
 import type { ConfirmModalProps } from '../types';
-import styles from './LoginModal.module.css';
+import styles from './ConfirmModal.module.css';
 
 /**
  * ConfirmModal - Pre-configured modal for confirmation dialogs
@@ -59,10 +59,10 @@ export const ConfirmModal = ({ isOpen, onClose, onConfirm, title, children, conf
         <div>{children}</div>
 
         <div className={styles.actions}>
-          <button className={styles.submitButton} onClick={onClose} disabled={isLoading} style={{ background: '#9e9e9e' }}>
+          <button type="button" className={styles.cancelButton} onClick={onClose} disabled={isLoading}>
             {cancelLabel}
           </button>
-          <button className={styles.submitButton} onClick={handleConfirm} disabled={isLoading}>
+          <button type="button" className={styles.submitButton} onClick={handleConfirm} disabled={isLoading}>
             {isLoading ? (
               <>
                 <span className={styles.spinner} aria-hidden="true"></span>

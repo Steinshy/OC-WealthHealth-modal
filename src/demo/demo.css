@@ -23,13 +23,21 @@ body {
 }
 
 @media (prefers-color-scheme: dark) {
-  html {
+  :root:not([data-theme='light']) {
     color: #f3f4f6;
   }
 
-  body {
+  :root:not([data-theme='light']) body {
     background: #0f172a;
   }
+}
+
+[data-theme='dark'] {
+  color: #f3f4f6;
+}
+
+[data-theme='dark'] body {
+  background: #0f172a;
 }
 
 @media (prefers-reduced-motion: reduce) {

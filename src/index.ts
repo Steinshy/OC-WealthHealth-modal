@@ -1,5 +1,5 @@
 /**
- * hrnet-modal - Modern, accessible modal component library for React
+ * wealthHealth-modal - Modern, accessible modal component library for React
  *
  * Main exports:
  * - Modal: Base modal component with native <dialog> element
@@ -9,5 +9,18 @@
  * - Type definitions: ModalProps, SignupFormData, SignupModalProps, LoginFormData, LoginModalProps, ConfirmModalProps
  */
 
-export { Modal, SignupModal, LoginModal, ConfirmModal } from './components';
-export type { ModalProps, SignupFormData, SignupModalProps, LoginFormData, LoginModalProps, ConfirmModalProps } from './types';
+export { Modal, SignupModal, LoginModal, ConfirmModal, FormField, PasswordField, ErrorBanner, SuccessMessage } from './components';
+export { useTheme } from './hooks/useTheme';
+export type { Theme, UseThemeReturn } from './hooks/useTheme';
+export type {
+  ModalProps,
+  SignupFormData,
+  SignupModalProps,
+  LoginFormData,
+  LoginModalProps,
+  ConfirmModalProps,
+  FormFieldProps,
+  PasswordFieldProps,
+  ErrorBannerProps,
+  SuccessMessageProps,
+} from './types';

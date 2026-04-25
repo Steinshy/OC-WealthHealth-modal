@@ -3,6 +3,7 @@ node_modules/
 
 # Build output
 dist/
+dist-demo/
 build/
 out/
 
@@ -36,3 +37,4 @@ Thumbs.db
 
 # Claude
 CLAUDE.md
+docs/PUBLISHING.md

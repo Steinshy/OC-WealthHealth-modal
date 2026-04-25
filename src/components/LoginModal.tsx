@@ -1,6 +1,7 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 
 import { Modal } from './Modal';
+import { FormField, PasswordField, ErrorBanner, SuccessMessage } from './form';
 import type { LoginFormData, LoginModalProps } from '../types';
 import styles from './LoginModal.module.css';
 
@@ -51,7 +52,23 @@ export const LoginModal = ({ isOpen, onClose, onSubmit, isLoading = false, error
   const [validationErrors, setValidationErrors] = useState<Record<string, string>>(initialErrors || {});
   const [submitted, setSubmitted] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const firstErrorRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
+  const successCloseTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const clearSuccessCloseTimer = useCallback(() => {
+    if (successCloseTimerRef.current !== null) {
+      clearTimeout(successCloseTimerRef.current);
+      successCloseTimerRef.current = null;
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!isOpen) {
+      clearSuccessCloseTimer();
+    }
+    return () => clearSuccessCloseTimer();
+  }, [isOpen, clearSuccessCloseTimer]);
 
   /**
    * Validate form data and return errors object
@@ -87,12 +104,14 @@ export const LoginModal = ({ isOpen, onClose, onSubmit, isLoading = false, error
    */
   const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
+    clearSuccessCloseTimer();
 
     const errors = validateForm();
     setValidationErrors(errors);
 
     if (Object.keys(errors).length > 0) {
-      firstErrorRef.current?.focus();
+      if (errors.email) emailRef.current?.focus();
+      else if (errors.password) passwordRef.current?.focus();
       return;
     }
 
@@ -100,12 +119,13 @@ export const LoginModal = ({ isOpen, onClose, onSubmit, isLoading = false, error
       await onSubmit(formData);
       setSubmitted(true);
 
-      setTimeout(() => {
+      successCloseTimerRef.current = setTimeout(() => {
+        successCloseTimerRef.current = null;
         resetForm();
         onClose();
       }, 2000);
-    } catch (err) {
-      console.error('Login error:', err);
+    } catch {
+      // error surfaced to consumer via props
     }
   };
 
@@ -116,6 +136,7 @@ export const LoginModal = ({ isOpen, onClose, onSubmit, isLoading = false, error
     setFormData({ email: '', password: '' });
     setValidationErrors({});
     setSubmitted(false);
+    setShowPassword(false);
   };
 
   /**
@@ -148,68 +169,38 @@ export const LoginModal = ({ isOpen, onClose, onSubmit, isLoading = false, error
   return (
     <Modal isOpen={isOpen} onClose={onClose} title="Log In" status={getStatus()}>
       {submitted || showSuccess ? (
-        <div className={styles.successMessage}>
-          <p className={styles.successText}>Logged in successfully! Redirecting...</p>
-        </div>
+        <SuccessMessage message="Logged in successfully! Redirecting..." />
       ) : (
         <form onSubmit={handleSubmit} className={styles.form} noValidate>
-          {error && <div className={styles.errorBanner}>{error}</div>}
+          {error && <ErrorBanner message={error} />}
 
-          {/* Email field - WCAG: explicit label */}
-          <div className={styles.formGroup}>
-            <label htmlFor="email" className={styles.label}>
-              Email <span className={styles.required}>*</span>
-            </label>
-            <input
-              ref={validationErrors.email ? firstErrorRef : null}
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              required
-              disabled={isLoading}
-              className={`${styles.input} ${validationErrors.email ? styles.inputError : ''}`}
-              aria-describedby={validationErrors.email ? 'email-error' : undefined}
-            />
-            {validationErrors.email && (
-              <p id="email-error" className={styles.errorMessage}>
-                {validationErrors.email}
-              </p>
-            )}
-          </div>
+          <FormField
+            label="Email"
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleInputChange}
+            error={validationErrors.email}
+            required
+            disabled={isLoading}
+            ref={emailRef}
+          />
 
-          {/* Password field - WCAG: explicit label */}
-          <div className={styles.formGroup}>
-            <label htmlFor="password" className={styles.label}>
-              Password <span className={styles.required}>*</span>
-            </label>
-            <div className={styles.inputWrapper}>
-              <input
-                ref={validationErrors.password ? firstErrorRef : null}
-                type={showPassword ? 'text' : 'password'}
-                id="password"
-                name="password"
-                value={formData.password}
-                onChange={handleInputChange}
-                required
-                disabled={isLoading}
-                className={`${styles.input} ${validationErrors.password ? styles.inputError : ''}`}
-                aria-describedby={validationErrors.password ? 'password-error' : undefined}
-                style={{ paddingRight: '40px' }}
-              />
-              <button type="button" className={styles.togglePassword} onClick={() => setShowPassword(!showPassword)} aria-label={showPassword ? 'Hide password' : 'Show password'} disabled={isLoading}>
-                {showPassword ? '🙈' : '👁️'}
-              </button>
-            </div>
-            {validationErrors.password && (
-              <p id="password-error" className={styles.errorMessage}>
-                {validationErrors.password}
-              </p>
-            )}
-          </div>
+          <PasswordField
+            label="Password"
+            id="password"
+            name="password"
+            value={formData.password}
+            onChange={handleInputChange}
+            error={validationErrors.password}
+            required
+            disabled={isLoading}
+            ref={passwordRef}
+            showPassword={showPassword}
+            onToggleShowPassword={() => setShowPassword(!showPassword)}
+          />
 
-          {/* Submit button with loading state */}
           <div className={styles.actions}>
             <button type="submit" className={styles.submitButton} disabled={isLoading}>
               {isLoading ? (

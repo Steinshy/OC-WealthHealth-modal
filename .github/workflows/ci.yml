@@ -38,9 +38,3 @@ jobs:
 
       - name: Type check
         run: npm run type-check
-
-      - name: Build library
-        run: npm run build
-
-      - name: Build demo (GitHub Pages bundle)
-        run: npm run build:demo

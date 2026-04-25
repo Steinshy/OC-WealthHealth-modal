@@ -17,7 +17,10 @@ import styles from './Modal.module.css';
  * @param {'success' | 'error' | 'info' | 'warning' | 'default'} [props.status='default'] - Visual state affecting styling
  * @param {number} [props.autoCloseDuration] - Auto-close after N milliseconds (optional)
  * @param {boolean} [props.closeOnBackdrop=true] - Close modal when clicking backdrop
- * @param {boolean} [props.showCloseButton=false] - Show built-in close button
+ * @param {boolean} [props.showCloseButton=true] - Show built-in close button
+ * @param {boolean} [props.dismissible=true] - Allow modal to be dismissed via ESC, backdrop click, or close button
+ * @param {React.ReactNode} [props.icon] - Optional icon to display in header (e.g., status icon)
+ * @param {React.ReactNode} [props.footer] - Optional footer content rendered at bottom
  * @param {'sm' | 'md' | 'lg'} [props.size='md'] - Modal width size
  * @param {string} [props.className] - Additional CSS class
  * @param {React.ReactNode} props.children - Modal content
@@ -25,12 +28,27 @@ import styles from './Modal.module.css';
  * @example
  * ```tsx
  * const [isOpen, setIsOpen] = useState(false);
- * <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} status="success">
+ * <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} title="Welcome" status="success" icon={✓}>
  *   <p>Operation successful!</p>
+ *   <ModalFooter>Custom footer content</ModalFooter>
  * </Modal>
  * ```
  */
-export const Modal = ({ isOpen, onClose, title, status = 'default', autoCloseDuration, closeOnBackdrop = true, showCloseButton = false, size = 'md', className, children }: ModalProps) => {
+export const Modal = ({
+  isOpen,
+  onClose,
+  title,
+  status = 'default',
+  autoCloseDuration,
+  closeOnBackdrop = true,
+  showCloseButton = true,
+  dismissible = true,
+  icon,
+  footer,
+  size = 'md',
+  className,
+  children,
+}: ModalProps) => {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   /**
@@ -47,7 +65,6 @@ export const Modal = ({ isOpen, onClose, title, status = 'default', autoCloseDur
       if (autoCloseDuration && autoCloseDuration > 0) {
         const timer = setTimeout(() => {
           dialogRef.current?.close();
-          onClose();
         }, autoCloseDuration);
 
         return () => clearTimeout(timer);
@@ -55,22 +72,37 @@ export const Modal = ({ isOpen, onClose, title, status = 'default', autoCloseDur
     } else if (!isOpen && dialogRef.current?.open) {
       dialogRef.current.close();
     }
-  }, [isOpen, autoCloseDuration, onClose]);
+  }, [isOpen, autoCloseDuration]);
+
+  /** Close the dialog; parent `onClose` runs once from the dialog `close` event. */
+  const closeModal = () => {
+    dialogRef.current?.close();
+  };
 
   /**
    * Handle dialog close event (triggered by .close(), ESC key, or backdrop click)
    */
   const handleDialogClose = () => {
-    onClose();
+    if (dismissible) {
+      onClose();
+    }
   };
 
   /**
-   * Handle backdrop click to close (if enabled)
+   * Handle backdrop click to close (if enabled and dismissible)
    */
   const handleBackdropClick = (e: React.MouseEvent<HTMLDialogElement>) => {
-    if (closeOnBackdrop && e.target === dialogRef.current) {
-      dialogRef.current?.close();
-      onClose();
+    if (dismissible && closeOnBackdrop && e.target === dialogRef.current) {
+      closeModal();
+    }
+  };
+
+  /**
+   * Handle close button click
+   */
+  const handleCloseButtonClick = () => {
+    if (dismissible) {
+      closeModal();
     }
   };
 
@@ -78,23 +110,19 @@ export const Modal = ({ isOpen, onClose, title, status = 'default', autoCloseDur
     <dialog ref={dialogRef} onClose={handleDialogClose} onClick={handleBackdropClick} className={`${styles.modal} ${styles[`modal--${status}`]} ${styles[`modal--${size}`]} ${className || ''}`}>
       {title && (
         <div className={styles.header}>
-          <h2 className={styles.title}>{title}</h2>
-          {showCloseButton && (
-            <button
-              className={styles.closeButton}
-              onClick={() => {
-                dialogRef.current?.close();
-                onClose();
-              }}
-              aria-label="Close dialog"
-              type="button"
-            >
+          <div className={styles.headerTitle}>
+            {icon && <span className={styles.icon}>{icon}</span>}
+            <h2 className={styles.title}>{title}</h2>
+          </div>
+          {showCloseButton && dismissible && (
+            <button className={styles.closeButton} onClick={handleCloseButtonClick} aria-label="Close dialog" type="button">
               ✕
             </button>
           )}
         </div>
       )}
       <div className={styles.content}>{children}</div>
+      {footer && <div className={styles.footer}>{footer}</div>}
     </dialog>
   );
 };
