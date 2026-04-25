@@ -85,7 +85,6 @@ export const FormField = forwardRef<HTMLInputElement, FormFieldProps>(function F
         className={`${styles.input} ${error ? styles.inputError : ''}`}
         aria-describedby={error ? errorId : undefined}
         aria-invalid={error ? true : undefined}
-        style={{ width: '100%' }}
         {...inputProps}
       />
       {error && (

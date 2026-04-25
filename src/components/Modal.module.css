@@ -60,7 +60,7 @@
 
 /** Modal header container */
 .header {
-  align-items: center;
+  align-items: baseline;
   border-bottom: 1px solid rgb(0 0 0 / 8%);
   display: flex;
   gap: 12px;
@@ -308,7 +308,7 @@
 /* ==================== Dark mode support ==================== */
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme='light']) {
     --modal-bg: #424242;
     --modal-text: rgb(255 255 255 / 87%);
     --modal-text-light: rgb(255 255 255 / 70%);
@@ -318,31 +318,69 @@
     --modal-title-color-warning: #ffb74d;
   }
 
-  .modal {
+  :root:not([data-theme='light']) .modal {
     box-shadow:
       0 5px 5px -3px rgb(0 0 0 / 40%),
       0 8px 10px 1px rgb(0 0 0 / 28%),
       0 3px 14px 2px rgb(0 0 0 / 24%);
   }
 
-  .modal::backdrop {
+  :root:not([data-theme='light']) .modal::backdrop {
     background: rgb(0 0 0 / 70%);
   }
 
-  .header {
+  :root:not([data-theme='light']) .header {
     border-bottom-color: rgb(255 255 255 / 12%);
   }
 
-  .closeButton {
+  :root:not([data-theme='light']) .closeButton {
     color: rgb(255 255 255 / 54%);
   }
 
-  .closeButton:hover {
+  :root:not([data-theme='light']) .closeButton:hover {
     background-color: rgb(255 255 255 / 8%);
     color: rgb(255 255 255 / 87%);
   }
 
-  .modal--default {
+  :root:not([data-theme='light']) .modal--default {
     border-top-color: #616161;
   }
+}
+
+:global([data-theme='dark']) {
+  --modal-bg: #424242;
+  --modal-text: rgb(255 255 255 / 87%);
+  --modal-text-light: rgb(255 255 255 / 70%);
+  --modal-title-color-success: #81c784;
+  --modal-title-color-error: #ef5350;
+  --modal-title-color-info: #64b5f6;
+  --modal-title-color-warning: #ffb74d;
+}
+
+[data-theme='dark'] .modal {
+  box-shadow:
+    0 5px 5px -3px rgb(0 0 0 / 40%),
+    0 8px 10px 1px rgb(0 0 0 / 28%),
+    0 3px 14px 2px rgb(0 0 0 / 24%);
+}
+
+[data-theme='dark'] .modal::backdrop {
+  background: rgb(0 0 0 / 70%);
+}
+
+[data-theme='dark'] .header {
+  border-bottom-color: rgb(255 255 255 / 12%);
+}
+
+[data-theme='dark'] .closeButton {
+  color: rgb(255 255 255 / 54%);
+}
+
+[data-theme='dark'] .closeButton:hover {
+  background-color: rgb(255 255 255 / 8%);
+  color: rgb(255 255 255 / 87%);
+}
+
+[data-theme='dark'] .modal--default {
+  border-top-color: #616161;
 }

@@ -59,7 +59,7 @@ export const ConfirmModal = ({ isOpen, onClose, onConfirm, title, children, conf
         <div>{children}</div>
 
         <div className={styles.actions}>
-          <button type="button" className={styles.submitButton} onClick={onClose} disabled={isLoading}>
+          <button type="button" className={styles.cancelButton} onClick={onClose} disabled={isLoading}>
             {cancelLabel}
           </button>
           <button type="button" className={styles.submitButton} onClick={handleConfirm} disabled={isLoading}>

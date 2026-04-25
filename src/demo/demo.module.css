@@ -13,6 +13,18 @@
   text-align: center;
 }
 
+.headerContent {
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.headerContent > div {
+  flex: 1;
+  text-align: center;
+}
+
 .header h1 {
   font-size: 32px;
   font-weight: 700;
@@ -22,6 +34,34 @@
 .header p {
   font-size: 16px;
   opacity: 0.95;
+}
+
+.themeToggle {
+  align-items: center;
+  background: rgb(255 255 255 / 15%);
+  border: 1px solid rgb(255 255 255 / 30%);
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  flex-shrink: 0;
+  height: 40px;
+  justify-content: center;
+  padding: 0;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
+  width: 40px;
+}
+
+.themeToggle:hover {
+  background: rgb(255 255 255 / 25%);
+  border-color: rgb(255 255 255 / 50%);
+}
+
+.themeToggle:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 2px;
 }
 
 .main {
@@ -177,43 +217,81 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .container {
+  :global(:root:not([data-theme='light'])) .container {
     background: #1f2937;
     color: #f3f4f6;
   }
 
-  .section h2 {
+  :global(:root:not([data-theme='light'])) .section h2 {
     border-bottom-color: #374151;
     color: #f3f4f6;
   }
 
-  .features li {
+  :global(:root:not([data-theme='light'])) .features li {
     background: #374151;
     border-left-color: #a5b4fc;
   }
 
-  .result {
+  :global(:root:not([data-theme='light'])) .result {
     background: #0f172a;
     border-color: #1e293b;
   }
 
-  .result h3 {
+  :global(:root:not([data-theme='light'])) .result h3 {
     color: #f3f4f6;
   }
 
-  .testNotes {
+  :global(:root:not([data-theme='light'])) .testNotes {
     background: #1e293b;
     border-color: #334155;
     color: #cbd5e1;
   }
 
-  .testNotes h3 {
+  :global(:root:not([data-theme='light'])) .testNotes h3 {
     color: #f3f4f6;
   }
 
-  .testNotes li {
+  :global(:root:not([data-theme='light'])) .testNotes li {
     color: #cbd5e1;
   }
+}
+
+:global([data-theme='dark']) .container {
+  background: #1f2937;
+  color: #f3f4f6;
+}
+
+:global([data-theme='dark']) .section h2 {
+  border-bottom-color: #374151;
+  color: #f3f4f6;
+}
+
+:global([data-theme='dark']) .features li {
+  background: #374151;
+  border-left-color: #a5b4fc;
+}
+
+:global([data-theme='dark']) .result {
+  background: #0f172a;
+  border-color: #1e293b;
+}
+
+:global([data-theme='dark']) .result h3 {
+  color: #f3f4f6;
+}
+
+:global([data-theme='dark']) .testNotes {
+  background: #1e293b;
+  border-color: #334155;
+  color: #cbd5e1;
+}
+
+:global([data-theme='dark']) .testNotes h3 {
+  color: #f3f4f6;
+}
+
+:global([data-theme='dark']) .testNotes li {
+  color: #cbd5e1;
 }
 
 @media (width <= 768px) {

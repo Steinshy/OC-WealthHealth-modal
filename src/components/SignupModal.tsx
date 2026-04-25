@@ -141,9 +141,8 @@ export const SignupModal = ({ isOpen, onClose, onSubmit, isLoading = false, erro
         resetForm();
         onClose();
       }, 2000);
-    } catch (err) {
-      // Error is passed via props, no additional handling needed
-      console.error('Signup error:', err);
+    } catch {
+      // error surfaced to consumer via props
     }
   };
 
@@ -194,7 +193,6 @@ export const SignupModal = ({ isOpen, onClose, onSubmit, isLoading = false, erro
         <form onSubmit={handleSubmit} className={styles.form} noValidate>
           {error && <ErrorBanner message={error} />}
 
-          {/* Email field - using FormField molecule */}
           <FormField
             label="Email"
             type="email"
@@ -208,7 +206,6 @@ export const SignupModal = ({ isOpen, onClose, onSubmit, isLoading = false, erro
             ref={emailRef}
           />
 
-          {/* Password field - using PasswordField molecule */}
           <PasswordField
             label="Password"
             id="password"
@@ -223,7 +220,6 @@ export const SignupModal = ({ isOpen, onClose, onSubmit, isLoading = false, erro
             onToggleShowPassword={() => setShowPassword(!showPassword)}
           />
 
-          {/* Confirm password field - using PasswordField molecule */}
           <PasswordField
             label="Confirm Password"
             id="confirmPassword"
@@ -238,7 +234,6 @@ export const SignupModal = ({ isOpen, onClose, onSubmit, isLoading = false, erro
             onToggleShowPassword={() => setShowConfirmPassword(!showConfirmPassword)}
           />
 
-          {/* Submit button with loading state */}
           <div className={styles.actions}>
             <button type="submit" className={styles.submitButton} disabled={isLoading}>
               {isLoading ? (

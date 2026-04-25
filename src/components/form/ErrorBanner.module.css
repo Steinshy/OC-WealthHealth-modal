@@ -36,9 +36,15 @@
 /* ==================== Dark Mode Support ==================== */
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme='light']) {
     --error-bg: #5f2c2c;
     --error-color: #ffcdd2;
     --error-border: #ef5350;
   }
+}
+
+:global([data-theme='dark']) {
+  --error-bg: #5f2c2c;
+  --error-color: #ffcdd2;
+  --error-border: #ef5350;
 }

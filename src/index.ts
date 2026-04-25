@@ -10,6 +10,8 @@
  */
 
 export { Modal, SignupModal, LoginModal, ConfirmModal, FormField, PasswordField, ErrorBanner, SuccessMessage } from './components';
+export { useTheme } from './hooks/useTheme';
+export type { Theme, UseThemeReturn } from './hooks/useTheme';
 export type {
   ModalProps,
   SignupFormData,

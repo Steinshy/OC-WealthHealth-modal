@@ -334,7 +334,7 @@
 /* ==================== Dark Mode Support ==================== */
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme='light']) {
     --input-border: rgb(255 255 255 / 23%);
     --input-border-hover: rgb(255 255 255 / 40%);
     --input-border-focus: #90caf9;
@@ -345,28 +345,64 @@
     --success-color: #81c784;
   }
 
-  .form {
+  :root:not([data-theme='light']) .form {
     background: #424242;
   }
 
-  .input {
+  :root:not([data-theme='light']) .input {
     color: rgb(255 255 255 / 87%);
   }
 
-  .input:disabled {
+  :root:not([data-theme='light']) .input:disabled {
     border-bottom-color: rgb(255 255 255 / 12%);
     color: rgb(255 255 255 / 38%);
   }
 
-  .errorBanner {
+  :root:not([data-theme='light']) .errorBanner {
     color: #ffcdd2;
   }
 
-  .togglePassword {
+  :root:not([data-theme='light']) .togglePassword {
     color: rgb(255 255 255 / 54%);
   }
 
-  .togglePassword:hover {
+  :root:not([data-theme='light']) .togglePassword:hover {
     color: rgb(255 255 255 / 87%);
   }
+}
+
+:global([data-theme='dark']) {
+  --input-border: rgb(255 255 255 / 23%);
+  --input-border-hover: rgb(255 255 255 / 40%);
+  --input-border-focus: #90caf9;
+  --input-border-error: #ef5350;
+  --label-color: rgb(255 255 255 / 70%);
+  --error-color: #ef5350;
+  --error-bg: #5f2c2c;
+  --success-color: #81c784;
+}
+
+[data-theme='dark'] .form {
+  background: #424242;
+}
+
+[data-theme='dark'] .input {
+  color: rgb(255 255 255 / 87%);
+}
+
+[data-theme='dark'] .input:disabled {
+  border-bottom-color: rgb(255 255 255 / 12%);
+  color: rgb(255 255 255 / 38%);
+}
+
+[data-theme='dark'] .errorBanner {
+  color: #ffcdd2;
+}
+
+[data-theme='dark'] .togglePassword {
+  color: rgb(255 255 255 / 54%);
+}
+
+[data-theme='dark'] .togglePassword:hover {
+  color: rgb(255 255 255 / 87%);
 }

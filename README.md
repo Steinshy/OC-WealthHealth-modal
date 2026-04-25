@@ -24,11 +24,17 @@ A lightweight React modal component library using native `<dialog>` element. Inc
 - **CSS Modules** — Scoped styles, no class name conflicts
 - **Pre-built forms** — SignupModal, LoginModal, ConfirmModal ready to use
 - **Dark mode & reduced motion** — Respects user preferences
+- **`useTheme` hook** — Built-in light/dark toggle with localStorage persistence
+
+## Prerequisites
+
+- **Node.js** >= 18
+- **React** 18 or 19
 
 ## Install
 
 ```bash
-npm install wealthhealth-modal
+npm install @steinshy/wealthhealth-modal
 ```
 
 ## Quick Start
@@ -36,7 +42,7 @@ npm install wealthhealth-modal
 ### Basic Modal
 
 ```tsx
-import { Modal } from 'wealthhalth-modal';
+import { Modal } from '@steinshy/wealthhealth-modal';
 import { useState } from 'react';
 
 export function App() {
@@ -56,7 +62,7 @@ export function App() {
 ### Signup Form
 
 ```tsx
-import { SignupModal } from 'WealthHealth-modal';
+import { SignupModal } from '@steinshy/wealthhealth-modal';
 import { useState } from 'react';
 
 export function AuthPage() {
@@ -140,12 +146,46 @@ Simple yes/no confirmation dialog.
 | `isLoading`    | `boolean`                                                  | `false`     | Show spinner, disable buttons             |
 | `status`       | `'success' \| 'error' \| 'info' \| 'warning' \| 'default'` | `'default'` | Visual state                              |
 
+## Theme
+
+### `useTheme()`
+
+A hook that manages light/dark mode. It sets `data-theme` on `<html>`, persists the choice to `localStorage`, and defaults to the OS `prefers-color-scheme` on first visit.
+
+```tsx
+import { useTheme } from '@steinshy/wealthhealth-modal';
+
+export function App() {
+  const { theme, toggleTheme, setTheme, isDark } = useTheme();
+
+  return (
+    <>
+      <button onClick={toggleTheme}>
+        {isDark ? '☀ Light mode' : '☾ Dark mode'}
+      </button>
+      {/* All modals respond automatically */}
+    </>
+  );
+}
+```
+
+| Return value  | Type                        | Description                                      |
+| ------------- | --------------------------- | ------------------------------------------------ |
+| `theme`       | `'light' \| 'dark'`         | Current active theme                             |
+| `isDark`      | `boolean`                   | `true` when dark mode is active                  |
+| `toggleTheme` | `() => void`                | Toggle between light and dark                    |
+| `setTheme`    | `(t: Theme) => void`        | Set a specific theme                             |
+
+The hook writes `data-theme="light"` or `data-theme="dark"` to the `<html>` element. All library components pick this up automatically — no ThemeProvider or prop drilling required.
+
+> **SSR note:** `useTheme` reads `localStorage` and `window.matchMedia` on mount, so it is safe to render server-side (it defaults to `'light'` on the server).
+
 ## Styling
 
 Components use CSS Modules for styling. Override with custom classes:
 
 ```tsx
-import { Modal } from 'WealthHealth-modal';
+import { Modal } from '@steinshy/wealthhealth-modal';
 import styles from './customStyles.module.css';
 
 <Modal isOpen={true} onClose={() => {}} className={styles.custom}>
@@ -158,16 +198,35 @@ Available CSS custom properties:
 ```css
 :root {
   --modal-bg: #ffffff;
-  --modal-text: #000000;
+  --modal-text: rgba(0, 0, 0, 0.87);
+  --modal-text-light: rgba(0, 0, 0, 0.6);
   --modal-border-radius: 4px;
-  --modal-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-  --modal-padding: 24px;
+  --modal-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
+  --modal-border-color-success: #4caf50;
+  --modal-border-color-error: #f44336;
+  --modal-border-color-info: #2196f3;
+  --modal-border-color-warning: #ff9800;
+  --modal-title-color-success: #2e7d32;
+  --modal-title-color-error: #c62828;
+  --modal-title-color-info: #1565c0;
+  --modal-title-color-warning: #e65100;
+}
+```
+
+Override dark mode values via `data-theme` (set by `useTheme`) or the media query:
+
+```css
+/* via useTheme() hook */
+[data-theme='dark'] {
+  --modal-bg: #424242;
+  --modal-text: rgba(255, 255, 255, 0.87);
 }
 
+/* or via OS preference */
 @media (prefers-color-scheme: dark) {
   :root {
-    --modal-bg: #1e1e1e;
-    --modal-text: #ffffff;
+    --modal-bg: #424242;
+    --modal-text: rgba(255, 255, 255, 0.87);
   }
 }
 ```
@@ -200,5 +259,7 @@ MIT
 ---
 
 **GitHub:** https://github.com/Steinshy/OC-WealthHealth-modal
+
 **Demo** https://steinshy.github.io/OC-WealthHealth-modal/
+
 **Original Project Repo** https://github.com/OpenClassrooms-Student-Center/P12_Front-end

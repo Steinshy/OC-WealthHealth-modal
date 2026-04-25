@@ -41,7 +41,11 @@
 /* ==================== Dark Mode Support ==================== */
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme='light']) {
     --success-color: #81c784;
   }
+}
+
+:global([data-theme='dark']) {
+  --success-color: #81c784;
 }

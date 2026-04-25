@@ -124,8 +124,8 @@ export const LoginModal = ({ isOpen, onClose, onSubmit, isLoading = false, error
         resetForm();
         onClose();
       }, 2000);
-    } catch (err) {
-      console.error('Login error:', err);
+    } catch {
+      // error surfaced to consumer via props
     }
   };
 
@@ -174,7 +174,6 @@ export const LoginModal = ({ isOpen, onClose, onSubmit, isLoading = false, error
         <form onSubmit={handleSubmit} className={styles.form} noValidate>
           {error && <ErrorBanner message={error} />}
 
-          {/* Email field - using FormField molecule */}
           <FormField
             label="Email"
             type="email"
@@ -188,7 +187,6 @@ export const LoginModal = ({ isOpen, onClose, onSubmit, isLoading = false, error
             ref={emailRef}
           />
 
-          {/* Password field - using PasswordField molecule */}
           <PasswordField
             label="Password"
             id="password"
@@ -203,7 +201,6 @@ export const LoginModal = ({ isOpen, onClose, onSubmit, isLoading = false, error
             onToggleShowPassword={() => setShowPassword(!showPassword)}
           />
 
-          {/* Submit button with loading state */}
           <div className={styles.actions}>
             <button type="submit" className={styles.submitButton} disabled={isLoading}>
               {isLoading ? (

@@ -60,6 +60,7 @@
   transition:
     border-color 0.3s,
     box-shadow 0.3s;
+  width: 100%;
 }
 
 .input:hover:not(:disabled) {
@@ -140,7 +141,7 @@
 /* ==================== Dark Mode Support ==================== */
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme='light']) {
     --ff-input-border: rgb(255 255 255 / 23%);
     --ff-input-border-hover: rgb(255 255 255 / 40%);
     --ff-input-border-focus: #90caf9;
@@ -149,12 +150,30 @@
     --ff-error-color: #ef5350;
   }
 
-  .input {
+  :root:not([data-theme='light']) .input {
     color: rgb(255 255 255 / 87%);
   }
 
-  .input:disabled {
+  :root:not([data-theme='light']) .input:disabled {
     border-bottom-color: rgb(255 255 255 / 12%);
     color: rgb(255 255 255 / 38%);
   }
+}
+
+:global([data-theme='dark']) {
+  --ff-input-border: rgb(255 255 255 / 23%);
+  --ff-input-border-hover: rgb(255 255 255 / 40%);
+  --ff-input-border-focus: #90caf9;
+  --ff-input-border-error: #ef5350;
+  --ff-label-color: rgb(255 255 255 / 70%);
+  --ff-error-color: #ef5350;
+}
+
+[data-theme='dark'] .input {
+  color: rgb(255 255 255 / 87%);
+}
+
+[data-theme='dark'] .input:disabled {
+  border-bottom-color: rgb(255 255 255 / 12%);
+  color: rgb(255 255 255 / 38%);
 }
